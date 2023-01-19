@@ -14,6 +14,144 @@ module.exports = {
   },
   rules: {
     /**
+     * Javascript가 인정하는 범위를 넘긴 숫자 사용 금지
+     * const num = 5123000000000000000000000000001 [X]
+     */
+    'no-loss-of-precision': 'error',
+    /**
+     * magic numbers 사용 안 함
+     */
+    'no-magic-numbers': 'off',
+    /**
+     * 정규식에 읽기 힘든 이모지 같은 특수문자 사용 금지
+     */
+    'no-misleading-character-class': 'error',
+    /**
+     * foo = bar = 1 와 같이 사용 금지
+     * TODO: 논의 필요
+     */
+    'no-multi-assign': 'off',
+    /**
+     * 다중 라인 문자열 줄바꿈에 \ 사용 안 함
+     * let str = "hello \ [X]
+     *           world";
+     * ----------------------------
+     * let str = "hello " [O]
+     *           "world";
+     */
+    'no-multi-str': 'error',
+    /**
+     * if문에 부정적 조건 사용 안 함
+     * @reason 때로는 부정적 조건이 코드를 더욱 명확하게 표현할 수도 있음
+     */
+    'no-negated-condition': 'off',
+    /**
+     * 중첩된 삼항 연산자 사용 금지
+     * a ? b : c ? d : e
+     * @reason 코드가 어려워 지지만 그래도 막을 것까진 없을 듯 함. 사용 잘 안하는 스타일
+     * TODO: 논의 필요
+     */
+    'no-nested-ternary': 'off',
+    /**
+     * 변수에 할당하지 않고 직접 new Class 금지
+     * @reason new는 Class의 인스턴스를 만들기위해 사용되는 용도로 변수에 항상 할당되어야됨
+     */
+    'no-new': 'error',
+    /**
+     * new Functino 사용 안 함
+     * @reason eval과 같은 격
+     */
+    'no-new-func': 'error',
+    /**
+     * class가 아닌 함수를 인스턴스화 하는 것 금지
+     * var foo = new Symbol('foo'); [X], var foo = Symbol('foo'); [O]
+     */
+    'no-new-native-nonconstructor': 'error',
+    /**
+     * Object class에 new 금지
+     */
+    'no-new-object': 'error',
+    /**
+     * Symbol class에 new 금지
+     */
+    'no-new-symbol': 'error',
+    /**
+     * String, Number, Boolean class에 new 사용 금지
+     */
+    'no-new-wrappers': 'error',
+    /**
+     * 문자열에 \8 \9 사용 금지, \\8 혹은 \\9으로 사용
+     * TODO: alloy team에서는 off 처리, prettier로 해결 권장했음. 그렇지만 eslint에서 error 처리해도 될 듯함
+     */
+    'no-nonoctal-decimal-escape': 'error',
+    /**
+     * Math, Json, Reflect 를 함수로 직접 호출하는 것 금지
+     * var math = Math(); [X], var newJSON = new JSON(); [X], var reflect = Reflect(); [X]
+     */
+    'no-obj-calls': 'error',
+    /**
+     * 8진수 사용을 위해 0으로 시작하는 Number 사용 금지
+     * @reason 컴파일 단계에서 어짜피 오류 발생함
+     */
+    'no-octal': 'off',
+    /**
+     * octal escape 사용 금지
+     * @reason 컴파일 단계에서 어짜피 오류 발생함
+     */
+    'no-octal-escape': 'off',
+    /**
+     * 함수 Parameter에 값 재항당 금지
+     * function foo(bar) { // [X]
+     *   bar = 13;
+     * }
+     */
+    'no-param-reassign': 'error',
+    /**
+     * ++, -- 사용 안 함
+     */
+    'no-plusplus': 'off',
+    /**
+     * Promise의 콜백 함수에서 직접 return 금지
+     * @reason resolve, reject만 사용하면 됨
+     */
+    'no-promise-executor-return': 'error',
+    /**
+     * __proto__ 사용 금지
+     * @reason __proto__ 는 폐기된 구문
+     */
+    'no-proto': 'error',
+    /**
+     * hasOwnProperty, isPrototypeOf, propertyIsEnumerable 사용 안 함
+     * hasOwnProperty사용을 많이하지만 Object.hasOwn()으로 대체 가능
+     * TODO: alloy team 에서는 off 시킨 내용이라 논의 필요
+     */
+    'no-prototype-builtins': 'error',
+    /**
+     * 중복 변수 정의 금지
+     * @reason var 비활성화 하면 컴파일 단계에서 오류 발생하기 때문에 off 처리
+     */
+    'no-redeclare': 'off',
+    /**
+     * 정규식에 연속 공백 있는 것 금지
+     */
+    'no-regex-spaces': 'error',
+    /**
+     * 지정된 변수 export 안 함
+     */
+    'no-restricted-exports': 'off',
+    /**
+     * 지정된 전역 변수 사용 안 함
+     */
+    'no-restricted-globals': 'off',
+    /**
+     * 지정된 묘듈 import 안 함
+     */
+    'no-restricted-imports': 'off',
+    /**
+     * 지정된 Property 사용 안 함
+     */
+    'no-restricted-properties': 'off',
+    /**
      * 지정된 Syntax 사용 안 함
      */
     'no-restricted-syntax': 'off',
