@@ -14,6 +14,141 @@ module.exports = {
   },
   rules: {
     /**
+     * a == null 사용 안 함, a === null 사용
+     */
+    'no-eq-null': 'error',
+    /**
+     * eval 사용 금지
+     */
+    'no-eval': 'error',
+    /**
+     * catch의 첫번째 Parameter("err")에 값 할당 금지
+     */
+    'no-ex-assign': 'error',
+    /**
+     * JS Native 객체의 값 수정 금지
+     * @reason JS Native 객체 값 수정을 하면 JS 다음 버전과 충돌 가능성 있음
+     */
+    'no-extend-native': 'error',
+    /**
+     * 불필요한 bind 사용 안 함
+     */
+    'no-extra-bind': 'error',
+    /**
+     * 불필요한 Bool 형식 변환 안 함
+     */
+    'no-extra-boolean-cast': 'error',
+    /**
+     * 불필요한 label 사용 금지
+     * @reason label 사용 안 함
+     */
+    'no-extra-label': 'off',
+    /**
+     * switch의 case 안에 break, return 혹은 throw가 꼭 들어가야함.
+     */
+    'no-fallthrough': 'error',
+    /**
+     * 함수 선언에 값 재할당 금지
+     * function foo() {}
+     * foo = bar; [X]
+     * -----------------
+     * const foo = function() {}
+     * foo = bar [O]
+     */
+    'no-func-assign': 'error',
+    /**
+     * read-only 전역 변수에 값 할당 금지
+     */
+    'no-global-assign': 'error',
+    /**
+     * ~+, ~ 등 이해하기 어려운 타입 전환 방식 사용 금지
+     * "!!" 만 허용
+     */
+    'no-implicit-coercion': [
+      'error',
+      {
+        allow: ['!!'],
+      },
+    ],
+    /**
+     * Global 영역에 변수 정의 하고나 함수 정의 금지
+     * @reason module 모드일 때는 이런 전역 선언하는 일이 없음
+     */
+    'no-implicit-globals': 'off',
+    /**
+     * setTimeout 혹은 setInterval을 통해 문자열 실행 금지
+     * setTimeout("alert('Hi!');", 100); [X]
+     * ------------------------------------- 
+     * setTimeout(function() { [O]
+     *   alert("Hi!");
+     * }, 100);
+     */
+    'no-implied-eval': 'error',
+    /**
+     * import 한 모듈에 값 할당 금지
+     */
+    'no-import-assign': 'error',
+    /**
+     * 코드 뒤에 한 줄 주석 사용 금지
+     * @reason 코드 뒤 한 줄 주석은 사용 많이 함
+     */
+    'no-inline-comments': 'off',
+    /**
+     * if 코드 블록내에서 함수 선언 금지
+     * both: function, var 모두 금지
+     */
+    'no-inner-declarations': ['error', 'both'],
+    /**
+     * RegExp 생성자에서 잘못된 정규식 사용 금지
+     */
+    'no-invalid-regexp': 'error',
+    /**
+     * this가 undefined인 곳에서 this 사용 안 함
+     */
+    'no-invalid-this': 'error',
+    /**
+     * 문자열, 정규식, 템플릿에 보이지 않는 특수 문자 사용 금지, 코멘트 제외
+     */
+    'no-irregular-whitespace': [
+      'error',
+      {
+        skipStrings: true,
+        skipComments: false,
+        skipRegExps: true,
+        skipTemplates: true,
+      },
+    ],
+    /**
+     * __iterator__ 속성 사용 안 함
+     * @reason __iterator__ 속성은 폐기됨
+     * [Symbol.iterator]을 대신 사용
+     */
+    'no-iterator': 'error',
+    /**
+     * label에 정의된 변수와 중복 안 함
+     * @reason label 사용 안 함
+     */
+    'no-label-var': 'off',
+    /**
+     * label 사용 안 함
+     */
+    'no-labels': 'error',
+    /**
+     * 불필요한 {}를 코드 블록으로 사용 안 함
+     */
+    'no-lone-blocks': 'error',
+    /**
+     * else 안에 하나의 if만 있음
+     * @reason if 하나만 있는게 코드를 더 명확하게 해주기도함
+     * TODO: 논의 필요 airbnb team에서는 else if를 쓰도록 권장하는 듯?
+     */
+    'no-lonely-if': 'off',
+    /**
+     * 반복문 내 함수에서 반목문 조건에 해당하는 변수 사용 금지
+     * @reason let 사용하면 해결됨
+     */
+    'no-loop-func': 'off',
+    /**
      * Javascript가 인정하는 범위를 넘긴 숫자 사용 금지
      * const num = 5123000000000000000000000000001 [X]
      */
