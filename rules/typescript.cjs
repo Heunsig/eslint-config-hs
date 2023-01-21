@@ -170,5 +170,22 @@ module.exports = {
      */
     'no-array-constructor': 'off',
     '@typescript-eslint/no-array-constructor': 'off',
+    /**
+     * toString 메서드 남용 금지
+     */
+    '@typescript-eslint/no-base-to-string': 'off',
+    /**
+     * 혼동을 주는 non-null assertion 사용 금지
+     * a! == b [X], a !== b[X], a! === b[X]
+     * @reason !== 의 경우 많이 사용되고 때로는 코드를 좀 더 명확하게 하기도함
+     */
+    '@typescript-eslint/no-confusing-non-null-assertion': 'off',
+    /**
+     * void를 반환하는 함수의 반환값은 사용 안 함
+     * const alert = alert('Hello World')  [X]
+     * const res = confirm('Are you sure?')[O]
+     * @reason 코드에 영향을 주진 않아서 너무 Strict 할 필요 없을 듯 함
+     */
+    '@typescript-eslint/no-confusing-void-expression': 'off',
   }
 };
