@@ -293,8 +293,250 @@ module.exports = {
      */
     '@typescript-eslint/no-namespace': 'error',
     /**
-     * null이 아닌 
+     * "??" 왼쪽에 non-null assertion 사용 금지
+     * foo! ?? bar [X]
+     * foo ?? bar [O]
      */
     '@typescript-eslint/no-non-null-asserted-nullish-coalescing': 'error',
+    /**
+     * optional chaning 이후 non-null assertion 사용금지
+     * @reason optional chaining 뒤에 있는 속성은 비어있으면 안됨
+     */
+    '@typescript-eslint/no-non-null-asserted-optional-chain': 'error',
+    /**
+     * non-null assertion(!) 사용 안 함
+     * @reason non-null assertion 사용할 때가 있을수도 있음. 다만 사용 최대한 자제 필요
+     */
+    '@typescript-eslint/no-non-null-assertion': 'warn',
+    /**
+     * 중복 변수 정의 금지
+     * @reason var만 사용안하면 컴파일 단계에서 오류처리됨. var는 사용지 처리함
+     */
+    'no-redeclare': 'off',
+    '@typescript-eslint/no-redeclare': 'off',
+    /**
+     * Type 선언 시 불필요한 결합형식 혹은 교차형식 사용금지
+     * type UnionAny = string | 'foo' [X]
+     * @reason 해당 코드가 시스템에 영향을 끼치진 않으므로 warn 처리로 최대한 수정할 수 있도록 유도
+     */
+    '@typescript-eslint/no-redundant-type-constituents': 'warn',
+    /**
+     * commonJS 스펙인 require 사용금지
+     * @reason ESM 스펙인 import 를 사용하는 것으로 통일
+     */
+    '@typescript-eslint/no-require-imports': 'error',
+    /**
+     * 지정한 모듈 가져오기 금지
+     */
+    'no-restricted-imports': 'off',
+    '@typescript-eslint/no-restricted-imports': 'off',
+    /**
+     * 상위 스코프에 정의된 변수와 변수 이름이 반복되는 것을 금지
+     * 함수 Parameter와 상위 스코프에 정의된 변수와 이름이 같은 경우가 많음
+     */
+    'no-shadow': 'off',
+    '@typescript-eslint/no-shadow': 'off',
+    /**
+     * this를 다른 변수에 할당하는 것 금지
+     * @reason this를 다른 변수에 할당하는 것 보다 arrow func 사용하는 것 권장
+     * TODO: base 룰에서 consistent-this 룰과 겹침 확인 필요
+     */
+    '@typescript-eslint/no-this-alias': [
+      'error',
+      {
+        allowDestructuring: true,
+      },
+    ],
+    /**
+     * 문자열을 throw 하는 것 금지, Error 객체를 throw 해야됨
+     */
+    'no-throw-literal': 'off',
+    '@typescript-eslint/no-throw-literal': 'error',
+    /**
+     * Type Alias 사용 안 함
+     * type Foo = 'a'; [X]
+     * type Bar = Foo
+     * @reason 사용이 필요할 때가 있을 수 있기 때문에 굳이 막을 필요 없음
+     */
+    '@typescript-eslint/no-type-alias': 'off',
+    /**
+     * boolean 타입은 true 나 false와 비교할 수 없음
+     */
+    '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
+    /**
+     * 항상 ture이거나 false인 조건식 사용금지
+     * TODO: 논의 필요 alloy team에서는 off 처리
+     */
+    '@typescript-eslint/no-unnecessary-condition': 'error',
+    /**
+     * namespace 스코프내에서는 내부 변수를 직접 사용하기 때문에 namespace 접두사 사용 안 함
+     * TODO: 논의 필요
+     */
+    '@typescript-eslint/no-unnecessary-qualifier': 'warn',
+    /**
+     * 기본 Generic 타입이 설정되어 있는 함수나 Class를 호출할 때 
+     * 신규로 선언할 Generic 타입이 기본 타입과 같은 Generic 타입 선언 안 함
+     */
+    '@typescript-eslint/no-unnecessary-type-arguments': 'off',
+    /**
+     * 불필요한 type assertion 사용 안 함
+     */
+    '@typescript-eslint/no-unnecessary-type-assertion': 'error',
+    /**
+     * 불필요한 Type 제약 사용 안 함
+     * interface FooAny<T extends any> {} [X], interface FooAny<T> {} [O]
+     */
+    '@typescript-eslint/no-unnecessary-type-constraint': 'error',
+    /**
+     * any 타입을 함수 Parameter로 전달하는 것 금지
+     * @reason Typescript 적응을 위해 일단 any 사용 허용
+     */
+    '@typescript-eslint/no-unsafe-argument': 'off',
+    /**
+     * 변수 또는 속성의 타입을 any로 설정하는 것 금지
+     * @reason Typescript 적응을 위해 일단 any 사용 허용
+     */
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    /**
+     * any 형식의 변수를 함수 Paramter로 호출하는 것을 금지
+     * @reason Typescript 적응을 위해 일단 any 사용 허용
+     */
+    '@typescript-eslint/no-unsafe-call': 'off',
+    /**
+     * Class와 Interface를 병합하기 위해 같은 이름으로 선언하는 것 금지
+     * Class와 Interface를 병합하기 위해선 항상 implements 사용해야 됨
+     * TODO: 논의 필요, alloy team에서는 off처리 했지만 같은 이름으로 병합하게되면 코드가 복잡해질 수 있을 것 같음
+     */
+    '@typescript-eslint/no-unsafe-declaration-merging': 'warn',
+    /**
+     * any 타입 변수에서 속성 접근 금지
+     * @reason Typescript 적응을 위해 일단 any 사용 허용
+     */
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    /**
+     * 함수에서 any 타입으로 반환 금지
+     * @reason Typescript 적응을 위해 일단 any 사용 허용
+     */
+    '@typescript-eslint/no-unsafe-return': 'off',
+    /**
+     * 불필요한 표현 금지
+     */
+    'no-unused-expressions': 'off',
+    '@typescript-eslint/no-unused-expressions': [
+      'error',
+      {
+        allowShortCircuit: true,
+        allowTernary: true,
+        allowTaggedTemplates: true,
+      },
+    ],
+    /**
+     * 정의된 변수는 항상 사용 되어져야됨
+     * TODO: base rule에 적용된 것과 충돌 없는지 확인 필요
+     */
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': 'warn',
+    /**
+     * 선 정의 후 사용 해야됨
+     * TODO: base rule에 적용된 룰과 충돌 없는지 확인 필요
+     */
+    'no-use-before-define': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    /**
+     * 불필요한 constructor 금지
+     * TODO: base rule에 적용된 룰과 충돌 없는지 확인 필요
+     */
+    'no-useless-constructor': 'off',
+    '@typescript-eslint/no-useless-constructor': 'error',
+    /**
+     * 빈 내용 export 금지
+     * export {} [X]
+     * TODO: 논의 필요, eslint 룰에는 해당 내용 없음 확인필요
+     */
+    '@typescript-eslint/no-useless-empty-export': 'off',
+    /**
+     * 변수에 require한 모듈 할당 금지
+     * @reason no-require-imports룰에서 require 사용 금지시킴
+     */
+    '@typescript-eslint/no-var-requires': 'off',
+    /**
+     * non-nullable을 표현할 때 "as" 대신 "!" 사용
+     * TODO: 논의 필요, 한가지로 통일하는게 좋을 듯 함, alloy team은 off. 때에 따라 다르게 사용할 수도 있을 것 같음
+     */
+    '@typescript-eslint/non-nullable-type-assertion-style': 'off',
+    /**
+     * 변수 선언 후 반드시 줄 띄움 필요
+     */
+    'padding-line-between-statements': 'off',
+    '@typescript-eslint/padding-line-between-statements': 'off',
+    /**
+     * 类的构造函数参数作为类属性时，必须加上可访问性修饰符
+     * Class 생성자 매개변수를 클래스의 속성(멤버)로 사용하는 경우
+     * 접근 수식자(private, public, protected 등)를 추가해야됨 
+     */
+    '@typescript-eslint/parameter-properties': 'off',
+    /**
+     * as 'bar'대신 as const로 사용
+     * @reason as const는 새로운 문법이라 잘 사용되지 않음
+     */
+    '@typescript-eslint/prefer-as-const': 'off',
+    /**
+     * enum 사용시 명확한 값을 할당해야됨
+     * enum Status = { [X]
+     *  Open = 1,
+     *  Close 
+     * }
+     * -------------------
+     * enum Status = { [O]
+     *  Open = 1,
+     *  Close = 2
+     * }
+     */
+    '@typescript-eslint/prefer-enum-initializers': 'off',
+    /**
+     * index가 필요한 경우가 아니라면 for of 구문 사용 권장
+     * @reason for of를 사용하는 것이 코드 읽기가 더 쉬움
+     * TODO: 논의 필요
+     */
+    '@typescript-eslint/prefer-for-of': 'error',
+    /**
+     * 함수 타입을 정할 때 Interface형식이 아닌 Type 형식으로 작성
+     * interface Example { [X]
+     *   (): string;
+     * }
+     * -------------------------
+     * type Example = () => string; [O]
+     */
+    '@typescript-eslint/prefer-function-type': 'error',
+    /**
+     * indexOf 대신 includes 사용
+     * TODO: 논의 필요, 취향에 맞게 사용해도 괜찮을 것 같긴함
+     */
+    '@typescript-eslint/prefer-includes': 'off',
+    /**
+     * enum의 값들은 항상 정적 value로 할당해야 됨. 변수 할당 금지
+     * @reason 컴파일 단계에서 걸러짐
+     */
+    '@typescript-eslint/prefer-literal-enum-member': 'off',
+    /**
+     * Typescript module 정의를 위해 module 키워드 사용 안 함, namespace 사용
+     * @reason js에서 module이라는 키워드 이미 사용하고 있기 때문에 error 처리함
+     */
+    '@typescript-eslint/prefer-namespace-keyword': 'error',
+    /**
+     * || 대신 ?? 사용
+     * @reason || 사용해야 되는 경우가 있을수도 있음
+     */
+    '@typescript-eslint/prefer-nullish-coalescing': 'off',
+    /**
+     * && 대신 optional chain 사용
+     * foo && foo.a && foo.a.b && foo.a.b.c; [X]
+     * foo?.a?.b?.c; [O]
+     */
+    '@typescript-eslint/prefer-optional-chain': 'error',
+    /**
+     * private 변수인데 Class 객체 생성자에서 새로운값으로 할당되는 경우가 아니라면 readonly 설정을 해야됨
+     */
+    '@typescript-eslint/prefer-readonly': 'off',
   }
 };
