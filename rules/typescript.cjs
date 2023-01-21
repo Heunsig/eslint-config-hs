@@ -1,5 +1,5 @@
 /**
- * Heunsig ESLint
+ * Heunsig ESLint for Typescript
  * 
  * Authors:
  *  heunsig <heun3344@gmail.com>
@@ -536,7 +536,123 @@ module.exports = {
     '@typescript-eslint/prefer-optional-chain': 'error',
     /**
      * private 변수인데 Class 객체 생성자에서 새로운값으로 할당되는 경우가 아니라면 readonly 설정을 해야됨
+     * TODO: 룰 좀 더 파악 후 주석 수정 필요
      */
     '@typescript-eslint/prefer-readonly': 'off',
+    /**
+     * 함수의 Parameter를 readonly로 설정해야됨
+     * TODO: 논의 필요, 함수 Parameter에 값을 재할당 하는 일이 없기 때문에 readonly를 써서 방어적으로 가면 좋긴하지만 코드가 길어짐
+     */
+    '@typescript-eslint/prefer-readonly-parameter-types': 'off',
+    /**
+     * reduce를 사용할 때 두번째 Parameter에 as 사용하는 대신 Generic을 전달
+     * @reason reduce 사용을 권장 안함
+     */
+    '@typescript-eslint/prefer-reduce-type-parameter': 'off',
+    /**
+     * 정규표현식에서 global flag 사용을 안할 때 String#match 보다 RegExp#exec 사용 권장
+     */
+    '@typescript-eslint/prefer-regexp-exec': 'off',
+    /**
+     * Class 메서드의 반환값이 this 인경우 반환 타입을 this로 설정해야 됨
+     */
+    '@typescript-eslint/prefer-return-this-type': 'off',
+    /**
+     * String#startsWith, String#endsWith 사용 권장
+     * TODO: 논의 필요, 하나로 통일하는게 코드가 깔끔 할 수 있음
+     */
+    '@typescript-eslint/prefer-string-starts-ends-with': 'off',
+    /**
+     * 다음 줄의 ts 오류를 무시하기 위해서 @ts-ignore 대신 @ts-expect-error 사용
+     * @ts-ignore: ts 오류를 무시
+     * @ts-expect-error: ts 오류를 무시, 하지만 오류가 아닌 코드 위에 사용할 경우 warning 메세지 출력
+     */
+    '@typescript-eslint/prefer-ts-expect-error': 'warn',
+    /**
+     * async 함수의 반환 값은 항상 promice여야함
+     * TODO: 논의 필요
+     */
+    '@typescript-eslint/promise-function-async': 'off',
+    /**
+     * sort()를 사용할 때 항상 비교 함수 필요
+     * array.sort() [X], array.sort((a, b) => a - b) [O]
+     */
+    '@typescript-eslint/require-array-sort-compare': 'off',
+    /**
+     * async 함수 내에 항상 await 구문이 있어야 함
+     * TODO: 논의 필요, base 룰 과 충돌 확인 필요
+     */
+    'require-await': 'off',
+    '@typescript-eslint/require-await': 'off',
+    /**
+     * + 를 사용할 때 왼쪽 오른쪽이 모두 string이거나 number로 같아야함
+     * TODO: 논의 필요
+     */
+    '@typescript-eslint/restrict-plus-operands': 'off',
+    /**
+     * 템플릿 문자열의 변수 타입은 문자열이어야 함
+     * TODO: 논의 필요
+     */
+    '@typescript-eslint/restrict-template-expressions': 'off',
+    /**
+     * await 반환 금지
+     * @reason 가끔 써야되는 상황 발생
+     */
+    'no-return-await': 'off',
+    '@typescript-eslint/return-await': 'off',
+    /**
+     * Union 타입 및 Intersection 타입을 a-z 순 정렬 필요
+     */
+    '@typescript-eslint/sort-type-constituents': 'off',
+    /**
+     * 조건문은 항상 true, false로 비교해야됨. null, undefined, 0, ''를 조건문으로 설정 안됨
+     * TODO: 논의 필요
+     */
+    '@typescript-eslint/strict-boolean-expressions': 'off',
+    /**
+     * Union 타입을 switch의 조건으로 사용할 때 각 Union 타입이 case에 포함되어야됨
+     */
+    '@typescript-eslint/switch-exhaustiveness-check': 'off',
+    /**
+     * 삼중 슬래시(/)를 사용하여 파일 가져오는 것 금지
+     * @reason 삼중 슬래시(/)는 이미 폐기된 구문이지만 type 선언에서는 여전히 사용됨
+     */
+    '@typescript-eslint/triple-slash-reference': [
+      'error',
+      {
+        path: 'never',
+        types: 'always',
+        lib: 'always',
+      },
+    ],
+    /**
+     * interface, type을 정할 때 속성의 타입을 항상 지정해야됨
+     * TODO: 논의 필요
+     */
+    '@typescript-eslint/typedef': [
+      'error',
+      {
+        arrayDestructuring: false,
+        arrowParameter: false,
+        memberVariableDeclaration: false,
+        objectDestructuring: false,
+        parameter: false,
+        propertyDeclaration: true,
+        variableDeclaration: false,
+      },
+    ],
+    /**
+     * TODO: 룰 해석 필요
+     */
+    '@typescript-eslint/unbound-method': 'off',
+    /**
+     * 함수가 overload될 때 두 함수가 하나로 합쳐질 수 있으면 하나로 합쳐서 사용 권장
+     * function x(a: number): void; [X]
+     * function x(a: string): void;
+     * ------------------------------------
+     * function x(a: number|string): void; [O]
+     * TODO: 논의 필요
+     */
+    '@typescript-eslint/unified-signatures': 'error',
   }
 };
