@@ -2,19 +2,18 @@
   "version": "0.0.0",
   "name": "eslint-config-hs",
   "description": "Heunsig ESLint",
+  "author": {
+    "name": "Heunsig",
+    "email": "heun3344@gmail.com"
+  },
   "private": false,
-  "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc && vite build",
-    "preview": "vite preview",
     "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue --ignore-path .gitignore "
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
     "@babel/eslint-parser": "^7.19.1",
     "eslint": "^8.32.0",
-    "typescript": "^4.9.3",
-    "vite": "^4.0.0"
+    "typescript": "^4.9.3"
   }
 }
