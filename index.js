@@ -1,3 +1,7 @@
+// index.js
 module.exports = {
-  extends: ['./rules/base.cjs']
-}
+  extends: [
+    './base.js',
+    './code-style.js',
+  ],
+};
