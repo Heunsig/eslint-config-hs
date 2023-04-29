@@ -1,5 +1,5 @@
 # Heunsig ESLint
-- [Heunsig ESLint](#techcenter-dev-team-eslint)
+- [Heunsig ESLint](#heunsig-eslint)
   - [목표](#목표)
   - [준비 사항](#준비-사항)
   - [빠른 시작](#빠른-시작)
@@ -11,7 +11,7 @@
     - [Vue2](#vue2)
     - [Vue3](#vue3)
     - [Vue3 + Typescript (현재 사용을 권장하지 않습니다.)](#vue3--typescript-현재-사용을-권장하지-않습니다)
-    - [Vue3 + Typescript (No tsconfig.json, 사용 권장, \>= v1.2.0)](#vue3--typescript-no-tsconfigjson-사용-권장--v120)
+    - [Vue3 + Typescript (No tsconfig.json, 사용 권장)](#vue3--typescript-no-tsconfigjson-사용-권장)
   - [IDE Setting (선택 사항)](#ide-setting-선택-사항)
     - [VSCode](#vscode)
       - [Save 시 자동으로 포맷팅 되도록 설정](#save-시-자동으로-포맷팅-되도록-설정)
@@ -25,17 +25,6 @@
 
 <br/>
 
-## 준비 사항
-`@techdev-ui/eslint-config`는 Nexon내 Nexus 시스템을 통해서 배포됩니다. `@techdev-ui/eslint-config` 설치하기 위해서는 Nexon Nexus에 연결을 해주어야 합니다.
-
-1. 작업 중인 프로젝트 root 디렉토리에 `.npmrc` 파일을 생성합니다.
-2. `.npmrc` 파일에 `@techdev-ui:registry=https://nexus.nexon.com/repository/npm-techcenterdev-hosted/` 를 등록합니다.
-
-> ⚠️ 만약 **Permission 문제가 발생**한다면 터미널에 `npm login --scope=@techdev-ui`를 입력 후 Nexon 사내 인증 정보로 로그인하시면 됩니다.
->
-> _`.npmrc`가 등록된 상태여야 합니다._
-
-<br/>
 
 ## 빠른 시작
 ### 공통 적용
@@ -65,19 +54,19 @@
 ### Javascript
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser @techdev-ui/eslint-config
+npm install --save-dev eslint @babel/core @babel/eslint-parser eslint-config-hs
 ```
 
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser @techdev-ui/eslint-config
+yarn add --dev eslint @babel/core @babel/eslint-parser eslint-config-hs
 ```
 
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 ```javascript
 module.exports = {
   extends: [
-    '@techdev-ui/eslint-config',
+    'eslint-config-hs',
   ],
 };
 ```
@@ -85,23 +74,23 @@ module.exports = {
 ### Typescript
 **NPM**
 ```bash
-npm install --save-dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin @techdev-ui/eslint-config
+npm install --save-dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin @techdev-ui/eslint-config
+yarn add --dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-hs
 ```
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 ```javascript
 module.exports = {
   extends: [
-    '@techdev-ui/eslint-config',
+    'eslint-config-hs',
   ],
   overrides: [
     {
       files: ['src/**/*.ts', 'src/**/*.tsx'],
       extends: [
-        '@techdev-ui/eslint-config/typescript',
+        'eslint-config-hs/typescript',
       ],
       parserOptions: {
         project: './tsconfig.json', // tsconfig 파일 등록
@@ -114,23 +103,23 @@ module.exports = {
 ### Vue2
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @techdev-ui/eslint-config
+npm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @techdev-ui/eslint-config
+yarn add --dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
 ```
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 ```javascript
 module.exports = {
   extends: [
-    '@techdev-ui/eslint-config',
+    'eslint-config-hs',
   ],
   overrides: [
     {
       files: ['src/**/*.vue'],
       extends: [
-        '@techdev-ui/eslint-config/vue2',
+        'eslint-config-hs/vue2',
       ],
     },
   ],
@@ -140,23 +129,23 @@ module.exports = {
 ### Vue3
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @techdev-ui/eslint-config
+npm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @techdev-ui/eslint-config
+yarn add --dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
 ```
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 ```javascript
 module.exports = {
   extends: [
-    '@techdev-ui/eslint-config',
+    'eslint-config-hs',
   ],
   overrides: [
     {
       files: ['src/**/*.vue'],
       extends: [
-        '@techdev-ui/eslint-config/vue3',
+        'eslint-config-hs/vue3',
       ],
     },
   ],
@@ -168,11 +157,11 @@ module.exports = {
  
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @techdev-ui/eslint-config
+npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @techdev-ui/eslint-config
+yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
 ```
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 
@@ -181,7 +170,7 @@ yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint
 ```javascript
 module.exports = {
   extends: [
-    '@techdev-ui/eslint-config',
+    'eslint-config-hs',
   ],
   overrides: [
     {
@@ -191,7 +180,7 @@ module.exports = {
         'src/**/*.vue',
       ],
       extends: [
-        '@techdev-ui/eslint-config/typescript',
+        'eslint-config-hs/typescript',
       ],
       parserOptions: {
         project: './tsconfig.json', // tsconfig 파일 등록
@@ -200,7 +189,7 @@ module.exports = {
     {
       files: ['src/**/*.vue'],
       extends: [
-        '@techdev-ui/eslint-config/vue3',
+        'eslint-config-hs/vue3',
       ],
       parserOptions: {
         parser: '@typescript-eslint/parser',
@@ -210,20 +199,19 @@ module.exports = {
 };
 ```
 
-### Vue3 + Typescript (No tsconfig.json, 사용 권장, >= v1.2.0)
+### Vue3 + Typescript (No tsconfig.json, 사용 권장)
 > 📢 이 설정은 Typescript Lint 규칙 중 `tsconfig.json` 등록을 필요로 하는 규칙을 제거한 버전입니다.  
 > `tsconfig.json`을 요구하는 규칙들이 Lint 성능 저하의 원인이 되어서 이 버전을 추가했습니다.  
 
-> 📢@techdev-ui/eslint v1.2.0 이상인 경우에 사용가능합니다.
 
 
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @techdev-ui/eslint-config
+npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @techdev-ui/eslint-config
+yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
 ```  
 
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
@@ -231,7 +219,7 @@ yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint
 ```javascript
 module.exports = {
   extends: [
-    '@techdev-ui/eslint-config',
+    'eslint-config-hs',
   ],
   overrides: [
     {
@@ -241,9 +229,9 @@ module.exports = {
         'src/**/*.ts',
       ],
       extends: [
-        '@techdev-ui/eslint-config/typescript',
-        '@techdev-ui/eslint-config/typescript-no-tsconfig',
-        '@techdev-ui/eslint-config/vue3',
+        'eslint-config-hs/typescript',
+        'eslint-config-hs/typescript-no-tsconfig',
+        'eslint-config-hs/vue3',
       ],
       parserOptions: {
         parser: {
