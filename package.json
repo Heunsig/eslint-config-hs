@@ -8,12 +8,12 @@
   },
   "private": false,
   "scripts": {
-    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue --ignore-path .gitignore "
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx,.vue --ignore-path .gitignore"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.12",
-    "@babel/eslint-parser": "^7.19.1",
-    "eslint": "^8.32.0",
+    "@babel/core": "^7.21.5",
+    "@babel/eslint-parser": "^7.21.3",
+    "eslint": "^8.39.0",
     "typescript": "^4.9.3"
   }
 }

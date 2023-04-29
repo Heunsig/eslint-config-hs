@@ -1,6 +1,5 @@
-// code-style.js
 /**
- * Techcenter Dev Team ESLint for code style
+ * Heunsig ESLint ESLint for code style
  * Javascript 실행 과정에서 문제가 생기는 것을 방지하기 위함이 아닌
  * 코드가 개발자들에게 어떻게 보일지에 대한 것들을 고려한 룰입니다.
  */
@@ -241,7 +240,7 @@ module.exports = {
      * Object Key에 quote 사용 여부
      * @now quote 필요한 경우에만 사용
      */
-    'quote-props': ['error', 'as-needed'],
+    'quote-props': ['error', 'consistent'],
     /**
      * rest, spread 연산자에 간격 띄움 여부
      * @now 간격 안 띄움

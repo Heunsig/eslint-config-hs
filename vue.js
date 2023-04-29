@@ -1,5 +1,5 @@
 /**
- * Techcenter Dev Team ESLint for vue
+ * Heunsig ESLint for vue
  * Vue 2,3 공통으로 적용되는 ESLint 룰입니다.
  */
 
@@ -677,8 +677,9 @@ module.exports = {
     'vue/prefer-separate-static-class': 'off',
     /**
      * v-bind값이 true인 경우 value값 생략
+     * @reason 체크박스, 라디오 박스와 같은 폼에서 true, false가 꼭 들어가야되는 상황이 있음.
      */
-    'vue/prefer-true-attribute-shorthand': 'error',
+    'vue/prefer-true-attribute-shorthand': 'off',
     /**
      * 컴포넌트 export default 할 내용을 변수에 넣어서 export 안함 (Option API 용)
      */
@@ -775,7 +776,7 @@ module.exports = {
     'vue/object-shorthand': 'off',
     'vue/operator-linebreak': 'off',
     'vue/prefer-template': 'off',
-    'vue/quote-props': ['error', 'as-needed'],
+    'vue/quote-props': ['error', 'consistent'],
     'vue/space-in-parens': ['error', 'never'],
     'vue/space-infix-ops': 'error',
     'vue/space-unary-ops': ['error', { words: true, nonwords: false }],

@@ -1,5 +1,5 @@
 /**
- * Techcenter Dev Team ESLint for Typescript
+ * Heunsig ESLint for Typescript
  * Typescript 코드들을 좀 더 명확하고 실행 과정에서 오류가 없도록 방지하기 위한 룰입니다.
  */
 

@@ -1,5 +1,5 @@
 /**
- * Techcenter Dev Team ESLint for vue3
+ * Heunsig ESLint for vue3
  * Vue 3를 위한 ESLint 룰입니다.
  */
 

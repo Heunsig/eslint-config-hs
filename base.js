@@ -1,6 +1,5 @@
-// base.json
 /**
- * Techcenter Dev Team ESLint
+ * Heunsig ESLint
  * Javascript 코드들을 좀 더 명확하고 실행 과정에서 오류가 없도록 방지하기 위한 룰입니다.
  */
 
@@ -53,7 +52,7 @@ module.exports = {
     /**
       * 변수 이름은 항상 camelcase
       */
-    camelcase: 'off',
+    'camelcase': 'off',
     /**
       * 주석의 첫번째 문자는 대문자로 시작
       */
@@ -66,7 +65,7 @@ module.exports = {
       * 함수 복잡도가 20을 넘기면 안됨
       * @reason https://en.wikipedia.org/wiki/Cyclomatic_complexity
       */
-    complexity: [
+    'complexity': [
       'error',
       {
         max: 20,
@@ -107,7 +106,7 @@ module.exports = {
     /**
       * ===, !== 만 사용가능 ==, != 사용금지
       */
-    eqeqeq: ['error', 'always'],
+    'eqeqeq': ['error', 'always'],
     /**
       * for루프 에서 잘못된 방향 사용 금지
       * @ex 잘못된 사용 사례: for (var i = 0; i < 10; i--), for (var i = 10; i >= 0; i++)
@@ -964,7 +963,7 @@ module.exports = {
     /**
      * parseInt는 두번째 Parameter 필요함
      */
-    radix: 'error',
+    'radix': 'error',
     /**
      * 연산자 뒤에 await나 yield 사용안하기
      * @reason 해당 룰 버그가 있음 (https://github.com/eslint/eslint/issues/11899)
@@ -1012,7 +1011,7 @@ module.exports = {
      * 'strict' 사용 금지
      * @reason ESLint에서 걸러짐
      */
-    strict: ['error', 'never'],
+    'strict': ['error', 'never'],
     /**
      * Symbol을 만들 때 첫번째 인자가 들어가야됨
      */
@@ -1033,7 +1032,7 @@ module.exports = {
     /**
      * if (2 === foo) 사용 [X], if (foo === 2) [O]
      */
-    yoda: [
+    'yoda': [
       'error',
       'never',
       {

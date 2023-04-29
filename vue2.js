@@ -1,5 +1,5 @@
 /**
- * Techcenter Dev Team ESLint for vue2
+ * Heunsig ESLint for vue2
  * Vue 2를 위한 ESLint 룰입니다.
  */
 
