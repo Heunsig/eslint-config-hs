@@ -1,14 +1,14 @@
 /**
  * Heunsig ESLint for Typescript
- * 
- * Authors:
- *  heunsig <heun3344@gmail.com>
+ * Typescript 코드들을 좀 더 명확하고 실행 과정에서 오류가 없도록 방지하기 위한 룰입니다.
  */
 
 module.exports = {
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
   rules: {
+    'react/sort-comp': 'off',
+
     /**
      * overload된 함수는 항상 함께 써야함
      */
@@ -16,17 +16,14 @@ module.exports = {
     /**
      * 배열 타입을 설정하려면 Array<T> 또는 T[]로 써야함
      * @reason 융통성있게 사용하는 것이 좋을 듯 함
-     * TODO: 논의 필요
      */
     '@typescript-eslint/array-type': 'off',
     /**
      * then 메서드가 없는 개체에 await 사용 금지
-     * TODO: 논의 필요, then이 없으면 await 사용의미가 없음
      */
     '@typescript-eslint/await-thenable': 'off',
     /**
      * ts-comment 사용안함 ex) // @ts-ignore // @ts-nocheck // @ts-check
-     * TODO: 논의 필요
      */
     '@typescript-eslint/ban-ts-comment': 'error',
     /**
@@ -66,18 +63,16 @@ module.exports = {
     /**
      * Type 보다 Interface 선호
      * @reason Interface는 extend, merge 등이 가능
-     * TODO: 논의 필요
      */
-    '@typescript-eslint/consistent-type-definitions': ['error', 'interface'],
+    '@typescript-eslint/consistent-type-definitions': 'off',
     /**
      * 일관된 방식으로 Type export 하기
      */
     '@typescript-eslint/consistent-type-exports': 'off',
     /**
      * import type을 사용해서 Type 유형 가져오기
-     * TODO: 논의 필요
      */
-    '@typescript-eslint/consistent-type-imports': 'off',
+    '@typescript-eslint/consistent-type-imports': 'warn',
     /**
      * 기본값이 있거나 Optional한 Parameter는 항상 마지막에 위치
      */
@@ -92,7 +87,6 @@ module.exports = {
     /**
      * 함수에 명확한 반환값 Type이 선언되어 있어야함
      * @reason 명확한 반환값이 선언 안되더라도 Typescript에서 자동으로 추론해줌
-     * TODO: 논의 필요
      */
     '@typescript-eslint/explicit-function-return-type': 'off',
     /**
@@ -102,9 +96,8 @@ module.exports = {
     '@typescript-eslint/explicit-member-accessibility': ['error', { accessibility: 'explicit' }],
     /**
      * export 할 함수 또는 Class의 함수들은 입출력 Parameter의 타입을 명확히 정의해야됨
-     * TODO: 논의 필요
      */
-    '@typescript-eslint/explicit-module-boundary-types': 'error',
+    '@typescript-eslint/explicit-module-boundary-types': 'off',
     /**
      * 변수가 정의될 때 값도 지정되어야됨
      */
@@ -122,7 +115,6 @@ module.exports = {
      * 1. static > instance
      * 2. field > constructor > method
      * 3. public > protected > private
-     * TODO: 검토 필요
      */
     '@typescript-eslint/member-ordering': [
       'error',
@@ -158,7 +150,6 @@ module.exports = {
     ],
     /**
      * Interface에서 함수는 프로퍼티 스타일로 정의되어야 됨
-     * TODO: 아래의 형식으로 룰을 정하는게 맞는지 확인 필요
      */
     '@typescript-eslint/method-signature-style': ['error', 'property'],
     /**
@@ -208,7 +199,6 @@ module.exports = {
     /**
      * 빈 함수 허용 안 함
      * @reason 빈 함수를 기본값으로 설정해야되는 경우도 있음
-     * TODO: 논의 필요
      */
     'no-empty-function': 'off',
     '@typescript-eslint/no-empty-function': 'off',
@@ -236,16 +226,14 @@ module.exports = {
     '@typescript-eslint/no-for-in-array': 'off',
     /**
      * eval 사용 금지
-     * TODO: 논의 필요, error 처리하는게 좋을 듯함
      */
     'no-implied-eval': 'off',
     '@typescript-eslint/no-implied-eval': 'off',
     /**
      * 변수 선언시 값을 바로 할당하는 경우 type을 명식적으로 작성 안 함
      * @reason 명시적으로 type 설정을 안하는게 코드 단순화 할 수 있음
-     * TODO: 논의 필요
      */
-    '@typescript-eslint/no-inferrable-types': 'error',
+    '@typescript-eslint/no-inferrable-types': 'off',
     /**
      * this가 undefined인 곳에서 this 사용 안 함
      */
@@ -285,6 +273,7 @@ module.exports = {
     /**
      * 잘못된 Promise 사용 금지
      * Alloy Team 에서는 off 처리
+     *
      */
     '@typescript-eslint/no-misused-promises': 'error',
     /**
@@ -339,14 +328,8 @@ module.exports = {
     /**
      * this를 다른 변수에 할당하는 것 금지
      * @reason this를 다른 변수에 할당하는 것 보다 arrow func 사용하는 것 권장
-     * TODO: base 룰에서 consistent-this 룰과 겹침 확인 필요
      */
-    '@typescript-eslint/no-this-alias': [
-      'error',
-      {
-        allowDestructuring: true,
-      },
-    ],
+    '@typescript-eslint/no-this-alias': 'off',
     /**
      * 문자열을 throw 하는 것 금지, Error 객체를 throw 해야됨
      */
@@ -365,16 +348,14 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-boolean-literal-compare': 'off',
     /**
      * 항상 ture이거나 false인 조건식 사용금지
-     * TODO: 논의 필요 alloy team에서는 off 처리
      */
     '@typescript-eslint/no-unnecessary-condition': 'error',
     /**
      * namespace 스코프내에서는 내부 변수를 직접 사용하기 때문에 namespace 접두사 사용 안 함
-     * TODO: 논의 필요
      */
     '@typescript-eslint/no-unnecessary-qualifier': 'warn',
     /**
-     * 기본 Generic 타입이 설정되어 있는 함수나 Class를 호출할 때 
+     * 기본 Generic 타입이 설정되어 있는 함수나 Class를 호출할 때
      * 신규로 선언할 Generic 타입이 기본 타입과 같은 Generic 타입 선언 안 함
      */
     '@typescript-eslint/no-unnecessary-type-arguments': 'off',
@@ -405,7 +386,6 @@ module.exports = {
     /**
      * Class와 Interface를 병합하기 위해 같은 이름으로 선언하는 것 금지
      * Class와 Interface를 병합하기 위해선 항상 implements 사용해야 됨
-     * TODO: 논의 필요, alloy team에서는 off처리 했지만 같은 이름으로 병합하게되면 코드가 복잡해질 수 있을 것 같음
      */
     '@typescript-eslint/no-unsafe-declaration-merging': 'warn',
     /**
@@ -432,26 +412,22 @@ module.exports = {
     ],
     /**
      * 정의된 변수는 항상 사용 되어져야됨
-     * TODO: base rule에 적용된 것과 충돌 없는지 확인 필요
      */
     'no-unused-vars': 'off',
     '@typescript-eslint/no-unused-vars': 'warn',
     /**
      * 선 정의 후 사용 해야됨
-     * TODO: base rule에 적용된 룰과 충돌 없는지 확인 필요
      */
     'no-use-before-define': 'off',
     '@typescript-eslint/no-use-before-define': 'off',
     /**
      * 불필요한 constructor 금지
-     * TODO: base rule에 적용된 룰과 충돌 없는지 확인 필요
      */
     'no-useless-constructor': 'off',
-    '@typescript-eslint/no-useless-constructor': 'error',
+    '@typescript-eslint/no-useless-constructor': 'off',
     /**
      * 빈 내용 export 금지
      * export {} [X]
-     * TODO: 논의 필요, eslint 룰에는 해당 내용 없음 확인필요
      */
     '@typescript-eslint/no-useless-empty-export': 'off',
     /**
@@ -461,7 +437,6 @@ module.exports = {
     '@typescript-eslint/no-var-requires': 'off',
     /**
      * non-nullable을 표현할 때 "as" 대신 "!" 사용
-     * TODO: 논의 필요, 한가지로 통일하는게 좋을 듯 함, alloy team은 off. 때에 따라 다르게 사용할 수도 있을 것 같음
      */
     '@typescript-eslint/non-nullable-type-assertion-style': 'off',
     /**
@@ -472,7 +447,7 @@ module.exports = {
     /**
      * 类的构造函数参数作为类属性时，必须加上可访问性修饰符
      * Class 생성자 매개변수를 클래스의 속성(멤버)로 사용하는 경우
-     * 접근 수식자(private, public, protected 등)를 추가해야됨 
+     * 접근 수식자(private, public, protected 등)를 추가해야됨
      */
     '@typescript-eslint/parameter-properties': 'off',
     /**
@@ -484,7 +459,7 @@ module.exports = {
      * enum 사용시 명확한 값을 할당해야됨
      * enum Status = { [X]
      *  Open = 1,
-     *  Close 
+     *  Close
      * }
      * -------------------
      * enum Status = { [O]
@@ -496,9 +471,8 @@ module.exports = {
     /**
      * index가 필요한 경우가 아니라면 for of 구문 사용 권장
      * @reason for of를 사용하는 것이 코드 읽기가 더 쉬움
-     * TODO: 논의 필요
      */
-    '@typescript-eslint/prefer-for-of': 'error',
+    '@typescript-eslint/prefer-for-of': 'warn',
     /**
      * 함수 타입을 정할 때 Interface형식이 아닌 Type 형식으로 작성
      * interface Example { [X]
@@ -507,10 +481,9 @@ module.exports = {
      * -------------------------
      * type Example = () => string; [O]
      */
-    '@typescript-eslint/prefer-function-type': 'error',
+    '@typescript-eslint/prefer-function-type': 'off',
     /**
      * indexOf 대신 includes 사용
-     * TODO: 논의 필요, 취향에 맞게 사용해도 괜찮을 것 같긴함
      */
     '@typescript-eslint/prefer-includes': 'off',
     /**
@@ -532,16 +505,15 @@ module.exports = {
      * && 대신 optional chain 사용
      * foo && foo.a && foo.a.b && foo.a.b.c; [X]
      * foo?.a?.b?.c; [O]
+     * @reason 때에 따사 선택적으로 사용하는 것이 코드가 더 명확함
      */
-    '@typescript-eslint/prefer-optional-chain': 'error',
+    '@typescript-eslint/prefer-optional-chain': 'off',
     /**
      * private 변수인데 Class 객체 생성자에서 새로운값으로 할당되는 경우가 아니라면 readonly 설정을 해야됨
-     * TODO: 룰 좀 더 파악 후 주석 수정 필요
      */
     '@typescript-eslint/prefer-readonly': 'off',
     /**
      * 함수의 Parameter를 readonly로 설정해야됨
-     * TODO: 논의 필요, 함수 Parameter에 값을 재할당 하는 일이 없기 때문에 readonly를 써서 방어적으로 가면 좋긴하지만 코드가 길어짐
      */
     '@typescript-eslint/prefer-readonly-parameter-types': 'off',
     /**
@@ -559,7 +531,6 @@ module.exports = {
     '@typescript-eslint/prefer-return-this-type': 'off',
     /**
      * String#startsWith, String#endsWith 사용 권장
-     * TODO: 논의 필요, 하나로 통일하는게 코드가 깔끔 할 수 있음
      */
     '@typescript-eslint/prefer-string-starts-ends-with': 'off',
     /**
@@ -569,8 +540,7 @@ module.exports = {
      */
     '@typescript-eslint/prefer-ts-expect-error': 'warn',
     /**
-     * async 함수의 반환 값은 항상 promice여야함
-     * TODO: 논의 필요
+     * async 함수의 반환 값은 항상 promise여야함
      */
     '@typescript-eslint/promise-function-async': 'off',
     /**
@@ -580,18 +550,15 @@ module.exports = {
     '@typescript-eslint/require-array-sort-compare': 'off',
     /**
      * async 함수 내에 항상 await 구문이 있어야 함
-     * TODO: 논의 필요, base 룰 과 충돌 확인 필요
      */
     'require-await': 'off',
-    '@typescript-eslint/require-await': 'off',
+    '@typescript-eslint/require-await': 'error',
     /**
      * + 를 사용할 때 왼쪽 오른쪽이 모두 string이거나 number로 같아야함
-     * TODO: 논의 필요
      */
     '@typescript-eslint/restrict-plus-operands': 'off',
     /**
      * 템플릿 문자열의 변수 타입은 문자열이어야 함
-     * TODO: 논의 필요
      */
     '@typescript-eslint/restrict-template-expressions': 'off',
     /**
@@ -606,7 +573,6 @@ module.exports = {
     '@typescript-eslint/sort-type-constituents': 'off',
     /**
      * 조건문은 항상 true, false로 비교해야됨. null, undefined, 0, ''를 조건문으로 설정 안됨
-     * TODO: 논의 필요
      */
     '@typescript-eslint/strict-boolean-expressions': 'off',
     /**
@@ -627,7 +593,6 @@ module.exports = {
     ],
     /**
      * interface, type을 정할 때 속성의 타입을 항상 지정해야됨
-     * TODO: 논의 필요
      */
     '@typescript-eslint/typedef': [
       'error',
@@ -651,8 +616,41 @@ module.exports = {
      * function x(a: string): void;
      * ------------------------------------
      * function x(a: number|string): void; [O]
-     * TODO: 논의 필요
      */
-    '@typescript-eslint/unified-signatures': 'error',
-  }
+    '@typescript-eslint/unified-signatures': 'off',
+
+    /*******************************
+     * Typescript Formatting Rules *
+     *******************************/
+    // 'brace-style': 'off',
+    // '@typescript-eslint/brace-style': 'warn',
+    // 'comma-dangle': 'off',
+    // '@typescript-eslint/comma-dangle': 'warn',
+    // 'comma-spacing': 'off',
+    // '@typescript-eslint/comma-spacing': 'warn',
+    'func-call-spacing': 'off',
+    '@typescript-eslint/func-call-spacing': ['error', 'never'],
+    // indent: 'off',
+    // '@typescript-eslint/indent': 'warn',
+    // 'key-spacing': 'off',
+    // '@typescript-eslint/key-spacing': 'warn',
+    // 'keyword-spacing': 'off',
+    // '@typescript-eslint/keyword-spacing': 'warn',
+    // '@typescript-eslint/member-delimiter-style': 'warn',
+    // 'no-extra-parens': 'off',
+    // '@typescript-eslint/no-extra-parens': 'warn',
+    // 'object-curly-spacing': 'off',
+    // '@typescript-eslint/object-curly-spacing': 'warn',
+    // quotes: 'off',
+    // '@typescript-eslint/quotes': 'single',
+    // semi: 'off',
+    // '@typescript-eslint/semi': 'warn',
+    // 'space-before-blocks': 'off',
+    // '@typescript-eslint/space-before-blocks': 'warn',
+    // 'space-before-function-paren': 'off',
+    // '@typescript-eslint/space-before-function-paren': 'warn',
+    // 'space-infix-ops': 'off',
+    // '@typescript-eslint/space-infix-ops': 'warn',
+    // '@typescript-eslint/type-annotation-spacing': 'warn',
+  },
 };

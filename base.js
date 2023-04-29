@@ -1,378 +1,389 @@
 /**
  * Heunsig ESLint
- * 
- * Authors:
- *  heunsig <heun3344@gmail.com>
+ * Javascript 코드들을 좀 더 명확하고 실행 과정에서 오류가 없도록 방지하기 위한 룰입니다.
  */
 
 module.exports = {
+  parser: '@babel/eslint-parser',
+  parserOptions: {
+    ecmaVersion: 2019,
+    sourceType: 'module',
+    ecmaFeatures: {
+      globalReturn: false,
+      impliedStrict: true,
+      jsx: true,
+    },
+    requireConfigFile: false,
+    allowImportExportEverywhere: false,
+  },
   env: {
     browser: true,
     node: true,
     commonjs: true,
     es6: true,
   },
+  root: true,
   rules: {
-    /** 
-    * setter가 설정되어 있는 경우 getter가 항상 있어야됨 
-    * getter가 설정되어 있는 경우 setter는 없을 수도 있음 
-    */ 
-    'accessor-pairs': [ 
-        'error', 
-        { 
-          setWithoutGet: true, 
-          getWithoutSet: false, 
-        },
-      ], 
-      /** 
-      * 배열의 method에서 forEach를 제외하곤 모두 return 값이 존재해야 됨 
-      */ 
-      'array-callback-return': 'error', 
-      /** 
-      * Arrow 함수를 반드시 대괄호로 감싸야 함 
-      * @reason 개발자가 마다 Arrow 함수 사용 스타일이 다르고, eslint에서 보다 다른 툴로 표준화 시키는 것이 권장됨 
-      */ 
-      'arrow-body-style': 'off', 
-      /** 
-      * 블록 scoped 내에서만 var 사용 가능 
-      * @reason var 사용이 금지 
-      */ 
-      'block-scoped-var': 'off', 
-      /** 
-      * 변수 이름은 항상 camelcase 
-      */ 
-      camelcase: 'off', 
-      /** 
-      * 주석의 첫번째 문자는 대문자로 시작 
-      */ 
-      'capitalized-comments': 'off', 
-      /** 
-      * class methods 내에 this가 반드시 사용되어야 됨 
-      */ 
-      'class-methods-use-this': 'off', 
-      /** 
-      * 함수 복잡도가 20을 넘기면 안됨 
-      * @reason https://en.wikipedia.org/wiki/Cyclomatic_complexity 
-      */ 
-      complexity: [ 
-        'error', 
-        { 
-          max: 20, 
-        }, 
-      ], 
-      /** 
-      * return이 항상 존재해야 됨 
-      * @reason Typescript에서 타입 체크를 위해 return을 사용하는 경우가 많음 
-      * @reason nesting if 문을 사용하지 않기 위해 return이 없는 경우도 있음 
-      */ 
-      'consistent-return': 'off', 
-      /** 
-      * this를 다른 변수로 사용하는 것 제한함 
-      * @reason const $this = this 처럼 사용할 때가 있을 수도 있음 
-      */ 
-      'consistent-this': 'off', 
-      /** 
-      * constructor에 super() 반드시 존재 
-      */ 
-      'constructor-super': 'error', 
-      /** 
-      * switch 문에서 default가 항상 존재해야 됨 
-      */ 
-      'default-case': 'off', 
-      /** 
-      * switch 문에서 default 는 항상 마지막에 있어야됨 
-      */ 
-      'default-case-last': 'error',
-      /** 
-      * 기본 값이 있는 Parameter는 항상 맨 뒤에 위치 해야됨 
-      */ 
-      'default-param-last': 'off', 
-      /** 
-      * foo['bar'] 사용x, foo.bar로 사용 
-      * @reason 한 코드 내에서 둘 중 한가지로 통일만 하면 됨 
-      */ 
-      'dot-notation': 'off', 
-      /** 
-      * ===, !== 만 사용가능 ==, != 사용금지 
-      */ 
-      eqeqeq: ['error', 'always'], 
-      /** 
-      * for루프 에서 잘못된 방향 사용 금지 
-      * @ex 잘못된 사용 사례: for (var i = 0; i < 10; i--), for (var i = 10; i >= 0; i++) 
-      */ 
-      'for-direction': 'error', 
-      /** 
-      * 함수가 변수에 할당될 때 함수 명은 항상 변수 명과 동일해야됨 
-      */ 
-      'func-name-matching': [ 
-        'error', 
-        'always', 
-        { 
-          includeCommonJSModuleExports: false, 
-        }, 
-      ], 
-      /** 
-      * 함수 명이 항상 있어야함 
-      * @reason 익명 함수 사용은 필수 
-      */ 
-      'func-names': 'off', 
-      /** 
-      * 특정 함수 사용 스타일 하나로만 지정 
-      */ 
-      'func-style': 'off', 
-      /** 
-      * getter는 항상 반환 값이 있어야됨 
-      */ 
-      'getter-return': 'error', 
-      /** 
-      * getter와 setter는 항상 묶여 있어야됨 
-      */ 
-      'grouped-accessor-pairs': 'error', 
-      /** 
-      * for in 내부에 항상 hasOwnProperty 가 있어야됨 
+    /**
+    * setter가 설정되어 있는 경우 getter가 항상 있어야됨
+    * getter가 설정되어 있는 경우 setter는 없을 수도 있음
+    */
+    'accessor-pairs': [
+      'error',
+      {
+        setWithoutGet: true,
+        getWithoutSet: false,
+      },
+    ],
+    /**
+      * 배열의 method에서 forEach를 제외하곤 모두 return 값이 존재해야 됨
       */
-      'guard-for-in': 'error', 
-      /** 
-      * 지정한 식별자는 사용 금지 
-      * @reason denylist를 만드는 것 또한 비용이 크기 때문에 off 처리 
-      */ 
-      'id-denylist': 'off', 
-      /** 
-      * 변수 이름 길이 제한 
-      */ 
-      'id-length': 'off', 
-      /** 
-      * 변수 이름 지정된 정규 표현식에 일치해야됨 
-      */ 
-      'id-match': 'off', 
-      /** 
-      * 변수는 정의할 때 항상 값 할당 해야됨 
-      */ 
-      'init-declarations': 'off', 
-      /** 
-      * 한줄 코멘트의 위치 고정 
-      * @reason 코멘트 위치를 고정 시키는 것은 너무 strict 함 
-      */ 
-      'line-comment-position': 'off', 
-      /** 
-      * Class 내 구성 함수/변수 사이에 라인이 들어가야 됨 
-      * @reason 때에 따라 다르기 때문에 해당 옵션 off 시킴 
-      */ 
-      'lines-between-class-members': 'off', 
-      /** 
-      * a ||= b 사용 안됨, a = a || b 스타일만 사용가능 
-      * @reason 너무 strict 함 
-      */ 
-      'logical-assignment-operators': 'off', 
-      /** 
-      * 한 파일 내 선언할 수 있는 Class 수 제한 
-      */ 
-      'max-classes-per-file': 'off', 
-      /** 
-      * 코드 블록 5개 이상 중첩으로 사용 안됨 
-      */ 
-      'max-depth': ['error', 5], 
-      /** 
-      * 파일의 최대 코드 줄 수 제한 
-      * @reason 프로젝트 마다 별도로 사용되도록 하기위해 기본 세팅에서는 off 처리 
-      */ 
-      'max-lines': 'off', 
-      /** 
-      * 함수 블록의 코드 줄 수 제한 
-      */ 
-      'max-lines-per-function': 'off', 
-      /** 
-      * 콜백 함수 3개 레이어 이상 중첩 금지 
-      * @reason 만약 3개 넘어가면 async/await 사용 권장 
+    'array-callback-return': 'error',
+    /**
+      * Arrow 함수를 반드시 대괄호로 감싸야 함
+      * @reason 개발자가 마다 Arrow 함수 사용 스타일이 다르고, eslint에서 보다 다른 툴로 표준화 시키는 것이 권장됨
       */
-      'max-nested-callbacks': ['error', 3], 
-      /**
-      * 함수 Parameter 갯수 제한 
+    'arrow-body-style': 'off',
+    /**
+      * 블록 scoped 내에서만 var 사용 가능
+      * @reason var 사용이 금지
       */
-      'max-params': 'off', 
-      // 'max-params': ['error', 3], 
-      /** 
-      * 함수 내 statement 수 제한 
-      */ 
-      'max-statements': 'off', 
-      /** 
-      * 한 줄내 최대 statement 수 제한 
-      */ 
-      'max-statements-per-line': 'off', 
-      /**
+    'block-scoped-var': 'off',
+    /**
+      * 변수 이름은 항상 camelcase
+      */
+    'camelcase': 'off',
+    /**
+      * 주석의 첫번째 문자는 대문자로 시작
+      */
+    'capitalized-comments': 'off',
+    /**
+      * class methods 내에 this가 반드시 사용되어야 됨
+      */
+    'class-methods-use-this': 'off',
+    /**
+      * 함수 복잡도가 20을 넘기면 안됨
+      * @reason https://en.wikipedia.org/wiki/Cyclomatic_complexity
+      */
+    'complexity': [
+      'error',
+      {
+        max: 20,
+      },
+    ],
+    /**
+      * return이 항상 존재해야 됨
+      * @reason Typescript에서 타입 체크를 위해 return을 사용하는 경우가 많음
+      * @reason nesting if 문을 사용하지 않기 위해 return이 없는 경우도 있음
+      */
+    'consistent-return': 'off',
+    /**
+      * this를 다른 변수로 사용하는 것 제한함
+      * @reason const $this = this 처럼 사용할 때가 있을 수도 있음
+      */
+    'consistent-this': 'off',
+    /**
+      * constructor에 super() 반드시 존재
+      */
+    'constructor-super': 'error',
+    /**
+      * switch 문에서 default가 항상 존재해야 됨
+      */
+    'default-case': 'off',
+    /**
+      * switch 문에서 default 는 항상 마지막에 있어야됨
+      */
+    'default-case-last': 'error',
+    /**
+      * 기본 값이 있는 Parameter는 항상 맨 뒤에 위치 해야됨
+      */
+    'default-param-last': 'off',
+    /**
+      * foo['bar'] 사용x, foo.bar로 사용
+      * @reason 한 코드 내에서 둘 중 한가지로 통일만 하면 됨
+      */
+    'dot-notation': 'off',
+    /**
+      * ===, !== 만 사용가능 ==, != 사용금지
+      */
+    'eqeqeq': ['error', 'always'],
+    /**
+      * for루프 에서 잘못된 방향 사용 금지
+      * @ex 잘못된 사용 사례: for (var i = 0; i < 10; i--), for (var i = 10; i >= 0; i++)
+      */
+    'for-direction': 'error',
+    /**
+      * 함수가 변수에 할당될 때 함수 명은 항상 변수 명과 동일해야됨
+      */
+    'func-name-matching': [
+      'error',
+      'always',
+      {
+        includeCommonJSModuleExports: false,
+      },
+    ],
+    /**
+      * 함수 명이 항상 있어야함
+      * @reason 익명 함수 사용은 필수
+      */
+    'func-names': 'off',
+    /**
+      * 특정 함수 사용 스타일 하나로만 지정
+      */
+    'func-style': 'off',
+    /**
+      * getter는 항상 반환 값이 있어야됨
+      */
+    'getter-return': 'error',
+    /**
+      * getter와 setter는 항상 묶여 있어야됨
+      */
+    'grouped-accessor-pairs': 'error',
+    /**
+      * for in 내부에 항상 hasOwnProperty 가 있어야됨
+      */
+    'guard-for-in': 'error',
+    /**
+      * 지정한 식별자는 사용 금지
+      * @reason denylist를 만드는 것 또한 비용이 크기 때문에 off 처리
+      */
+    'id-denylist': 'off',
+    /**
+      * 변수 이름 길이 제한
+      */
+    'id-length': 'off',
+    /**
+      * 변수 이름 지정된 정규 표현식에 일치해야됨
+      */
+    'id-match': 'off',
+    /**
+      * 변수는 정의할 때 항상 값 할당 해야됨
+      */
+    'init-declarations': 'off',
+    /**
+      * 한줄 코멘트의 위치 고정
+      * @reason 코멘트 위치를 고정 시키는 것은 너무 strict 함
+      */
+    'line-comment-position': 'off',
+    /**
+      * Class 내 구성 함수/변수 사이에 라인이 들어가야 됨
+      * @reason 때에 따라 다르기 때문에 해당 옵션 off 시킴
+      */
+    'lines-between-class-members': 'off',
+    /**
+      * a ||= b 사용 안됨, a = a || b 스타일만 사용가능
+      * @reason 너무 strict 함
+      */
+    'logical-assignment-operators': 'off',
+    /**
+      * 한 파일 내 선언할 수 있는 Class 수 제한
+      */
+    'max-classes-per-file': 'off',
+    /**
+      * 코드 블록 5개 이상 중첩으로 사용 안됨
+      */
+    'max-depth': ['error', 5],
+    /**
+      * 파일의 최대 코드 줄 수 제한
+      * @reason 프로젝트 마다 별도로 사용되도록 하기위해 기본 세팅에서는 off 처리
+      */
+    'max-lines': 'off',
+    /**
+      * 함수 블록의 코드 줄 수 제한
+      */
+    'max-lines-per-function': 'off',
+    /**
+      * 콜백 함수 3개 레이어 이상 중첩 금지
+      * @reason 만약 3개 넘어가면 async/await 사용 권장
+      */
+    'max-nested-callbacks': ['error', 3],
+    /**
+      * 함수 Parameter 갯수 제한
+      */
+    'max-params': 'off',
+    // 'max-params': ['error', 3],
+    /**
+      * 함수 내 statement 수 제한
+      */
+    'max-statements': 'off',
+    /**
+      * 한 줄내 최대 statement 수 제한
+      */
+    'max-statements-per-line': 'off',
+    /**
       * 한줄 코멘트를 여러 줄 작성하는 것을 제한
       * @reason 코멘트 사용 방식에 제한을 두는 것은 좋지 않음
       */
-      'multiline-comment-style': 'off',
-      /**
+    'multiline-comment-style': 'off',
+    /**
       * new 뒤의 Class는 항상 대문자로 시작
       */
-      'new-cap': [
-        'error',
-        {
-          newIsCap: true, // new Car() (O), new car() (X)
-          capIsNew: false, // const now = Car() (O)
-          properties: true, // new car.Drive() (O), new car.drive(X)
-        },
-      ],
-      /**
-      * alert 사용 금지 
-      */ 
-      'no-alert': 'off', 
-      /** 
-      * Array 생성자를 사용할 때 하나이상의 Parameter가 들어오는 것을 금지 
-      * Array(500) - OK,  
-      * Array(0, 1, 2) - X, new Array(0, 1, 2) - X  
-      */ 
-      'no-array-constructor': 'error', 
-      /** 
-      * new Promise의 콜백에 async 사용 금지 
-      * @reason new Promise 콜백에서 async를 사용할 일은 없음, resolve, reject로 가능 
-      */ 
-      'no-async-promise-executor': 'error', 
-      /** 
-      * Loop문 내에서 await 사용 금지 
-      * @reason 사용이 필요 할 때가 있을 수 도 있기 때문에 룰을 너무 Strict하게 하지 않음 
-      */ 
-      'no-await-in-loop': 'off', 
-      /**
-      * 비트 연산 사용 금지 
+    'new-cap': [
+      'error',
+      {
+        newIsCap: true, // new Car() (O), new car() (X)
+        capIsNew: false, // const now = Car() (O)
+        properties: true, // new car.Drive() (O), new car.drive(X)
+      },
+    ],
+    /**
+      * alert 사용 금지
       */
-      'no-bitwise': 'off', 
-      /** 
-      * caller, callee 사용 안함 
-      * @reason 이미 폐기된 문법 
-      */ 
-      'no-caller': 'error', 
-      /** 
-      * switch에서 case를 정의할 때 각 case에 {} 로 코드 불록 생성 
-      */ 
-      'no-case-declarations': 'error', 
-      /** 
-      * 정의된 Class에 값 재할당 금지 
-      */ 
-      'no-class-assign': 'error', 
-      /** 
-      * 마이너스 0과 비교 금지 
-      * x === -0 (X) 
-      */ 
-      'no-compare-neg-zero': 'error', 
-      /** 
-      * 조건문에서 변수에 값 할당 금지, do while 문법은 제외  
-      */ 
-      'no-cond-assign': ['error', 'except-parens'], 
-      /** 
-      * console.log 사용금지 
-      * @reason debug 용도로 사용을 해야됨 
-      */ 
-      'no-console': 'off', 
-      /** 
-      * const 정의된 상수에 재할당 금지 
-      */ 
-      'no-const-assign': 'error', 
-      /** 
-      * 값에 영향을 주지 않는 표현식 금지 
-      * const objIsEmpty = someObj === {}; (X),  
-      */ 
-      'no-constant-binary-expression': 'error', 
-      /** 
-      * 상수를 조건문의 판단 식으로 사용 금지, do while 문에서는 사용 가능 
-      */ 
-      'no-constant-condition': [ 
-        'error', 
-        { 
-          checkLoops: false, 
-        }, 
-      ], 
-      /** 
-      * constructor에서 값 반환 금지 
-      */ 
-      'no-constructor-return': 'error', 
-      /** 
-      * continue 사용 안함 
-      */ 
-      'no-continue': 'off', 
-      /** 
-      * 정규 표현식에서 Ctrl키의 ASCII 표현 금지. /\x1f/ 사용안함 
-      * @reason 이런 상황은 거의 나타나지 않음 
-      */ 
-      'no-control-regex': 'off', 
-      /** 
-      * debugger 사용 안함 
-      * @reason debugger 코드가 실수로 프로덕트 단계에 추가되면 문제발생함. 최대한 console.log를 찍어보거나 다른 툴 사용 권장 
-      */ 
-      'no-debugger': 'error', 
-      /** 
-      * 변수에 대해 delete 사용 금지 
-      * @reason 컴파일 단계에서 오류 처리 하기 때문에 off 처리함 
-      */ 
-      'no-delete-var': 'off', 
-      /** 
-      * 정규 표현식에 나눗셈 연산자와 비슷한 내용 작성 금지 let a = /=foo/ 
-      * @reason 이해상의 큰 어려움이 없어서 off 처리 
-      */ 
-      'no-div-regex': 'off', 
-      /** 
-      * 함수 Prameter에 중복된 Param 사용 금지 
-      * @reason 컴파일 단계에서 오류 처리 하기 때문에 off 처리함 
-      */ 
-      'no-dupe-args': 'off', 
-      /** 
-      * Class 내 중복 이름의 함수 혹은 변수 선언 금지 
-      */ 
-      'no-dupe-class-members': 'error', 
-      /** 
-      * if else 조건문에서 중복 조건 발생 금지 
-      */ 
-      'no-dupe-else-if': 'error', 
-      /** 
-      * 중복 Property key 사용 금지 
-      */ 
-      'no-dupe-keys': 'error', 
-      /** 
-      * siwtch 문에서 중복 case 사용 금지 
-      */ 
-      'no-duplicate-case': 'error', 
-      /** 
-      * 중복 import 금지 
-      * @reason 코드 순서상  
-      * import { merge } from 'module';  
-      * import { find } from 'module';   
-      * 와 같이 사용 하는 것도 나쁘지 않음 
-      */ 
-      'no-duplicate-imports': 'off', 
-      /** 
-      * else에서 return 사용 금지 
-      * @reason else에 return 사용하면 코드 구조를 더 명확하게 할 수 있음 
-      */ 
-      'no-else-return': 'off', 
-      /** 
-      * 빈 코드 블록 금지, try catch에서 catch는 빈 코드 블록 허용 
-      */ 
-      'no-empty': [ 
-        'error', 
-        { 
-          allowEmptyCatch: true, 
-        }, 
-      ], 
-      /** 
-      * 정규표현식에서 빈 문자 집합 사용 금지. /^abc[]/ (X) 
-      */ 
-      'no-empty-character-class': 'error', 
-      /** 
-      * 빈 함수 사용 금지 
-      * @reason 코드를 짜다가 디버그를 위해 함수를 비워 두는 경우가 필요할 수도 있음 
-      */ 
-      'no-empty-function': 'off', 
-      /** 
-      * 변수 혹은 Prameter, Destructure 시 {}나 []으로 빈 값으로 구성 금지 
-      */ 
-      'no-empty-pattern': 'error', 
-      /** 
-      * Class 내 빈 static 코드 불록 사용 안함 
-      * @reason 디버그 시 사용해야되는 경우도 있음 
-      */ 
-      'no-empty-static-block': 'off', 
+    'no-alert': 'off',
+    /**
+      * Array 생성자를 사용할 때 하나이상의 Parameter가 들어오는 것을 금지
+      * Array(500) - OK,
+      * Array(0, 1, 2) - X, new Array(0, 1, 2) - X
+      */
+    'no-array-constructor': 'error',
+    /**
+      * new Promise의 콜백에 async 사용 금지
+      * @reason new Promise 콜백에서 async를 사용할 일은 없음, resolve, reject로 가능
+      */
+    'no-async-promise-executor': 'error',
+    /**
+      * Loop문 내에서 await 사용 금지
+      * @reason 사용이 필요 할 때가 있을 수 도 있기 때문에 룰을 너무 Strict하게 하지 않음
+      */
+    'no-await-in-loop': 'off',
+    /**
+      * 비트 연산 사용 금지
+      */
+    'no-bitwise': 'off',
+    /**
+      * caller, callee 사용 안함
+      * @reason 이미 폐기된 문법
+      */
+    'no-caller': 'error',
+    /**
+      * switch에서 case를 정의할 때 각 case에 {} 로 코드 불록 생성
+      */
+    'no-case-declarations': 'error',
+    /**
+      * 정의된 Class에 값 재할당 금지
+      */
+    'no-class-assign': 'error',
+    /**
+      * 마이너스 0과 비교 금지
+      * x === -0 (X)
+      */
+    'no-compare-neg-zero': 'error',
+    /**
+      * 조건문에서 변수에 값 할당 금지, do while 문법은 제외
+      */
+    'no-cond-assign': ['error', 'except-parens'],
+    /**
+      * console.log 사용금지
+      * @reason debug 용도로 사용을 해야됨
+      */
+    'no-console': 'off',
+    /**
+      * const 정의된 상수에 재할당 금지
+      */
+    'no-const-assign': 'error',
+    /**
+      * 값에 영향을 주지 않는 표현식 금지
+      * const objIsEmpty = someObj === {}; (X),
+      */
+    'no-constant-binary-expression': 'error',
+    /**
+      * 상수를 조건문의 판단 식으로 사용 금지, do while 문에서는 사용 가능
+      */
+    'no-constant-condition': [
+      'error',
+      {
+        checkLoops: false,
+      },
+    ],
+    /**
+      * constructor에서 값 반환 금지
+      */
+    'no-constructor-return': 'error',
+    /**
+      * continue 사용 안함
+      */
+    'no-continue': 'off',
+    /**
+      * 정규 표현식에서 Ctrl키의 ASCII 표현 금지. /\x1f/ 사용안함
+      * @reason 이런 상황은 거의 나타나지 않음
+      */
+    'no-control-regex': 'off',
+    /**
+      * debugger 사용 안함
+      * @reason debugger 코드가 실수로 프로덕트 단계에 추가되면 문제발생함. 최대한 console.log를 찍어보거나 다른 툴 사용 권장
+      */
+    'no-debugger': 'error',
+    /**
+      * 변수에 대해 delete 사용 금지
+      * @reason 컴파일 단계에서 오류 처리 하기 때문에 off 처리함
+      */
+    'no-delete-var': 'off',
+    /**
+      * 정규 표현식에 나눗셈 연산자와 비슷한 내용 작성 금지 let a = /=foo/
+      * @reason 이해상의 큰 어려움이 없어서 off 처리
+      */
+    'no-div-regex': 'off',
+    /**
+      * 함수 Prameter에 중복된 Param 사용 금지
+      * @reason 컴파일 단계에서 오류 처리 하기 때문에 off 처리함
+      */
+    'no-dupe-args': 'off',
+    /**
+      * Class 내 중복 이름의 함수 혹은 변수 선언 금지
+      */
+    'no-dupe-class-members': 'error',
+    /**
+      * if else 조건문에서 중복 조건 발생 금지
+      */
+    'no-dupe-else-if': 'error',
+    /**
+      * 중복 Property key 사용 금지
+      */
+    'no-dupe-keys': 'error',
+    /**
+      * siwtch 문에서 중복 case 사용 금지
+      */
+    'no-duplicate-case': 'error',
+    /**
+      * 중복 import 금지
+      * @reason 코드 순서상
+      * import { merge } from 'module';
+      * import { find } from 'module';
+      * 와 같이 사용 하는 것도 나쁘지 않음
+      */
+    'no-duplicate-imports': 'off',
+    /**
+      * else에서 return 사용 금지
+      * @reason else에 return 사용하면 코드 구조를 더 명확하게 할 수 있음
+      */
+    'no-else-return': 'off',
+    /**
+      * 빈 코드 블록 금지, try catch에서 catch는 빈 코드 블록 허용
+      */
+    'no-empty': [
+      'error',
+      {
+        allowEmptyCatch: true,
+      },
+    ],
+    /**
+      * 정규표현식에서 빈 문자 집합 사용 금지. /^abc[]/ (X)
+      */
+    'no-empty-character-class': 'error',
+    /**
+      * 빈 함수 사용 금지
+      * @reason 코드를 짜다가 디버그를 위해 함수를 비워 두는 경우가 필요할 수도 있음
+      */
+    'no-empty-function': 'off',
+    /**
+      * 변수 혹은 Prameter, Destructure 시 {}나 []으로 빈 값으로 구성 금지
+      */
+    'no-empty-pattern': 'error',
+    /**
+      * Class 내 빈 static 코드 불록 사용 안함
+      * @reason 디버그 시 사용해야되는 경우도 있음
+      */
+    'no-empty-static-block': 'off',
     /**
      * a == null 사용 안 함, a === null 사용
      */
@@ -403,6 +414,10 @@ module.exports = {
      * @reason label 사용 안 함
      */
     'no-extra-label': 'off',
+    /**
+     * 불필요한 세미콜론 사용 금지
+     */
+    'no-extra-semi': 'error',
     /**
      * switch의 case 안에 break, return 혹은 throw가 꼭 들어가야함.
      */
@@ -438,7 +453,7 @@ module.exports = {
     /**
      * setTimeout 혹은 setInterval을 통해 문자열 실행 금지
      * setTimeout("alert('Hi!');", 100); [X]
-     * ------------------------------------- 
+     * -------------------------------------
      * setTimeout(function() { [O]
      *   alert("Hi!");
      * }, 100);
@@ -500,7 +515,6 @@ module.exports = {
     /**
      * else 안에 하나의 if만 있음
      * @reason if 하나만 있는게 코드를 더 명확하게 해주기도함
-     * TODO: 논의 필요 airbnb team에서는 else if를 쓰도록 권장하는 듯?
      */
     'no-lonely-if': 'off',
     /**
@@ -523,7 +537,7 @@ module.exports = {
     'no-misleading-character-class': 'error',
     /**
      * foo = bar = 1 와 같이 사용 금지
-     * TODO: 논의 필요
+     * @reason 이렇게 쓰는 경우는 거의 없어서 굳이 안막아도 됨
      */
     'no-multi-assign': 'off',
     /**
@@ -544,7 +558,6 @@ module.exports = {
      * 중첩된 삼항 연산자 사용 금지
      * a ? b : c ? d : e
      * @reason 코드가 어려워 지지만 그래도 막을 것까진 없을 듯 함. 사용 잘 안하는 스타일
-     * TODO: 논의 필요
      */
     'no-nested-ternary': 'off',
     /**
@@ -576,7 +589,6 @@ module.exports = {
     'no-new-wrappers': 'error',
     /**
      * 문자열에 \8 \9 사용 금지, \\8 혹은 \\9으로 사용
-     * TODO: alloy team에서는 off 처리, prettier로 해결 권장했음. 그렇지만 eslint에서 error 처리해도 될 듯함
      */
     'no-nonoctal-decimal-escape': 'error',
     /**
@@ -618,7 +630,6 @@ module.exports = {
     /**
      * hasOwnProperty, isPrototypeOf, propertyIsEnumerable 사용 안 함
      * hasOwnProperty사용을 많이하지만 Object.hasOwn()으로 대체 가능
-     * TODO: alloy team 에서는 off 시킨 내용이라 논의 필요
      */
     'no-prototype-builtins': 'error',
     /**
@@ -661,8 +672,7 @@ module.exports = {
     'no-return-await': 'off',
     /**
      * location.href = "javascript:void(0)"; 사용 금지
-     * @reason 가끔 써야되는 상황 발생? 
-     * TODO: 논의 필요
+     * @reason 가끔 써야되는 상황 발생?
      */
     'no-script-url': 'off',
     /**
@@ -744,7 +754,7 @@ module.exports = {
     'no-unreachable': 'error',
     /**
      * 1차 반복에서 반복문 벗어나는 구문 사용 안함
-     * while (foo) {  
+     * while (foo) {
      *  doSomething(foo);
      *  return; // [X]
      * }
@@ -880,7 +890,7 @@ module.exports = {
      * let a, b; [X]
      * --------
      * let a; [O]
-     * let b; 
+     * let b;
      */
     'one-var': ['error', 'never'],
     /**
@@ -953,17 +963,16 @@ module.exports = {
     /**
      * parseInt는 두번째 Parameter 필요함
      */
-    radix: 'error',
+    'radix': 'error',
     /**
      * 연산자 뒤에 await나 yield 사용안하기
-     * TODO: 이유 검토 필요 https://github.com/eslint/eslint/issues/11899
+     * @reason 해당 룰 버그가 있음 (https://github.com/eslint/eslint/issues/11899)
      */
     'require-atomic-updates': 'off',
     /**
      * async 함수에 await문이 있어야됨
-     * TODO: 논의 필요
      */
-    'require-await': 'off',
+    'require-await': 'error',
     /**
      * 정규표현식에 반드시 u 표시해야 됨
      */
@@ -1002,7 +1011,7 @@ module.exports = {
      * 'strict' 사용 금지
      * @reason ESLint에서 걸러짐
      */
-    strict: ['error', 'never'],
+    'strict': ['error', 'never'],
     /**
      * Symbol을 만들 때 첫번째 인자가 들어가야됨
      */
@@ -1023,12 +1032,12 @@ module.exports = {
     /**
      * if (2 === foo) 사용 [X], if (foo === 2) [O]
      */
-    yoda: [
+    'yoda': [
       'error',
       'never',
       {
         onlyEquality: true,
       },
     ],
-  }
+  },
 };
