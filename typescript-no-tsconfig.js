@@ -2,7 +2,7 @@
  * 아래의 typescript 룰을 lint를 돌리게 되면 tsconfig.json 파일 등록이 요구되고 성능이 크게 떨어져
  * tsconfig.json을 요구하는 룰들을 off 처리 합니다.
  */
- module.exports = {
+module.exports = {
   rules: {
     'require-await': 'error',
     'no-throw-literal': 'error',
