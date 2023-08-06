@@ -391,7 +391,7 @@ module.exports = {
      */
     'vue/prop-name-casing': ['error', 'camelCase'],
     /**
-     * props 정의 시 prop이 reuqired가 아닐 경우 default 설정 필요
+     * props 정의 시 prop이 required가 아닐 경우 default 설정 필요
      * @reason default 설정을 안해도 undefined가 되기 때문에 괜찮음
      */
     'vue/require-default-prop': 'off',
