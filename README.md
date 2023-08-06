@@ -12,7 +12,7 @@
     - [Vue3](#vue3)
     - [Vue3 + Typescript (현재 사용을 권장하지 않습니다.)](#vue3--typescript-현재-사용을-권장하지-않습니다)
     - [Vue3 + Typescript (No tsconfig.json, 사용 권장)](#vue3--typescript-no-tsconfigjson-사용-권장)
-    - [Nuxt + Typescript](#nuxt3--typescript)
+    - [Nuxt + Typescript](#nuxt--typescript)
   - [IDE Setting (선택 사항)](#ide-setting-선택-사항)
     - [VSCode](#vscode)
       - [Save 시 자동으로 포맷팅 되도록 설정](#save-시-자동으로-포맷팅-되도록-설정)
