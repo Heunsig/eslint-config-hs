@@ -12,6 +12,7 @@
     - [Vue3](#vue3)
     - [Vue3 + Typescript (현재 사용을 권장하지 않습니다.)](#vue3--typescript-현재-사용을-권장하지-않습니다)
     - [Vue3 + Typescript (No tsconfig.json, 사용 권장)](#vue3--typescript-no-tsconfigjson-사용-권장)
+    - [Nuxt + Typescript](#nuxt3--typescript)
   - [IDE Setting (선택 사항)](#ide-setting-선택-사항)
     - [VSCode](#vscode)
       - [Save 시 자동으로 포맷팅 되도록 설정](#save-시-자동으로-포맷팅-되도록-설정)
@@ -232,6 +233,47 @@ module.exports = {
         'eslint-config-hs/typescript',
         'eslint-config-hs/typescript-no-tsconfig',
         'eslint-config-hs/vue3',
+      ],
+      parserOptions: {
+        parser: {
+          'js': '@babel/eslint-parser',
+          'ts': '@typescript-eslint/parser',
+        },
+      },
+    },
+  ],
+};
+```
+
+### Nuxt + Typescript
+
+**NPM**
+```bash
+npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue eslint-plugin-nuxt vue-eslint-parser eslint-config-hs
+```
+**YARN**
+```bash
+yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue eslint-plugin-nuxt vue-eslint-parser eslint-config-hs
+```
+
+`.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
+
+```javascript
+module.exports = {
+  extends: [
+    'eslint-config-hs',
+  ],
+  overrides: [
+    {
+      files: [
+        './**/*.vue',
+        './**/*.tsx',
+        './**/*.ts',
+      ],
+      extends: [
+        'eslint-config-hs/typescript',
+        'eslint-config-hs/typescript-no-tsconfig',
+        'eslint-config-hs/nuxt3',
       ],
       parserOptions: {
         parser: {
