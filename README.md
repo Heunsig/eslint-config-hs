@@ -302,18 +302,21 @@ VSCode에서 설정한 `eslint` 룰을 기반으로 파일 저장 시 자동 포
 ```JSON
 {
   "[vue]": {
+    "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true,
     },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   },
   "[javascript]": {
+    "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true,
     },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint",
   },
   "[typescript]": {
+    "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
       "source.fixAll.eslint": true,
     },
