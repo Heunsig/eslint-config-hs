@@ -14,5 +14,6 @@ module.exports = {
     '@typescript-eslint/no-unnecessary-qualifier': 'off',
     '@typescript-eslint/no-unnecessary-type-assertion': 'off',
     '@typescript-eslint/require-await': 'off',
+    '@typescript-eslint/consistent-type-assertions': 'off',
   },
 };
