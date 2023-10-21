@@ -1,7 +1,6 @@
 # Heunsig ESLint
 - [Heunsig ESLint](#heunsig-eslint)
   - [목표](#목표)
-  - [준비 사항](#준비-사항)
   - [빠른 시작](#빠른-시작)
     - [공통 적용](#공통-적용)
   - [주의할 점](#주의할-점)
@@ -41,8 +40,8 @@
 * [Typescript](#typescript)
 * [Vue2](#vue2)
 * [Vue3](#vue3)
-* [Vue3 + Typescript](#vue3-typescript)
-
+* [Vue3 + Typescript](#vue3--typescript-no-tsconfigjson-사용-권장)
+* [Nuxt3 + Typescript](#nuxt3--typescript)
 <br/>
 
 ## 주의할 점
@@ -56,6 +55,11 @@
 **NPM**
 ```bash
 npm install --save-dev eslint @babel/core @babel/eslint-parser eslint-config-hs
+```
+
+**PNPM**
+```bash
+pnpm install --save-dev eslint @babel/core @babel/eslint-parser eslint-config-hs
 ```
 
 **YARN**
@@ -76,6 +80,10 @@ module.exports = {
 **NPM**
 ```bash
 npm install --save-dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-hs
+```
+**PNPM**
+```bash
+pnpm install --save-dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin eslint-config-hs
 ```
 **YARN**
 ```bash
@@ -106,6 +114,10 @@ module.exports = {
 ```bash
 npm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
 ```
+**PNPM**
+```bash
+pnpm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
+```
 **YARN**
 ```bash
 yarn add --dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
@@ -131,6 +143,10 @@ module.exports = {
 **NPM**
 ```bash
 npm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
+```
+**PNPM**
+```bash
+pnpm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue eslint-config-hs
 ```
 **YARN**
 ```bash
@@ -159,6 +175,10 @@ module.exports = {
 **NPM**
 ```bash
 npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
+```
+**PNPM**
+```bash
+pnpm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
 ```
 **YARN**
 ```bash
@@ -210,6 +230,10 @@ module.exports = {
 ```bash
 npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
 ```
+**PNPM**
+```bash
+pnpm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
+```
 **YARN**
 ```bash
 yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser eslint-config-hs
@@ -250,6 +274,10 @@ module.exports = {
 **NPM**
 ```bash
 npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue eslint-plugin-nuxt vue-eslint-parser eslint-config-hs
+```
+**PNPM**
+```bash
+pnpm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue eslint-plugin-nuxt vue-eslint-parser eslint-config-hs
 ```
 **YARN**
 ```bash
