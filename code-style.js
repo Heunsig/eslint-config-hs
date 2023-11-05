@@ -105,7 +105,7 @@ module.exports = {
      * 들여쓰기 간격
      * @now 2칸
      */
-    indent: ['error', 2],
+    'indent': ['error', 2],
     /**
      * jsx 에사 따옴표 스타일
      * @now 쌍따옴표 사용
@@ -203,7 +203,7 @@ module.exports = {
      * @reason 단일 라인 일 때에 {} 쓰는 것이 코드가 더 명확 할 때가 있음.
      * 개발자 스타일에 맞게 알아서 사용하는 것이 좋을 듯함
      */
-    curly: 'off',
+    'curly': 'off',
     /**
      * Objectd에서 { } 열고 닫기 전 줄바꿈 추가 여부
      * @now 하나의 스타일로 일관되게만 사용
@@ -235,7 +235,7 @@ module.exports = {
      * 따옴표 스타일
      * @now 따옴표 사용
      */
-    quotes: ['error', 'single'],
+    'quotes': ['error', 'single'],
     /**
      * Object Key에 quote 사용 여부
      * @now quote 필요한 경우에만 사용
@@ -250,7 +250,7 @@ module.exports = {
      * 세미콜론 사용 여부
      * @now 세미콜론 사용함
      */
-    semi: ['error', 'always'],
+    'semi': ['error', 'always'],
     /**
      * 세미콜론 앞, 뒤 간격 띄움 여부
      * @now 세미콜론 뒤쪽에만 필요할 경우 한 칸 띄움
