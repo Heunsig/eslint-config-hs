@@ -5,7 +5,10 @@
 
 module.exports = {
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint'],
+  plugins: [
+    '@typescript-eslint',
+    '@stylistic',
+  ],
   rules: {
     'react/sort-comp': 'off',
 
@@ -622,35 +625,24 @@ module.exports = {
     /*******************************
      * Typescript Formatting Rules *
      *******************************/
-    // 'brace-style': 'off',
-    // '@typescript-eslint/brace-style': 'warn',
-    // 'comma-dangle': 'off',
-    // '@typescript-eslint/comma-dangle': 'warn',
-    // 'comma-spacing': 'off',
-    // '@typescript-eslint/comma-spacing': 'warn',
-    'func-call-spacing': 'off',
-    '@typescript-eslint/func-call-spacing': ['error', 'never'],
-    // indent: 'off',
-    // '@typescript-eslint/indent': 'warn',
-    // 'key-spacing': 'off',
-    // '@typescript-eslint/key-spacing': 'warn',
-    // 'keyword-spacing': 'off',
-    // '@typescript-eslint/keyword-spacing': 'warn',
-    // '@typescript-eslint/member-delimiter-style': 'warn',
-    // 'no-extra-parens': 'off',
-    // '@typescript-eslint/no-extra-parens': 'warn',
-    // 'object-curly-spacing': 'off',
-    // '@typescript-eslint/object-curly-spacing': 'warn',
-    // quotes: 'off',
-    // '@typescript-eslint/quotes': 'single',
-    // semi: 'off',
-    // '@typescript-eslint/semi': 'warn',
-    // 'space-before-blocks': 'off',
-    // '@typescript-eslint/space-before-blocks': 'warn',
-    // 'space-before-function-paren': 'off',
-    // '@typescript-eslint/space-before-function-paren': 'warn',
-    // 'space-infix-ops': 'off',
-    // '@typescript-eslint/space-infix-ops': 'warn',
-    // '@typescript-eslint/type-annotation-spacing': 'warn',
+    '@stylistic/type-annotation-spacing': 'error',
+    '@stylistic/member-delimiter-style': ['error', {
+      'multiline': {
+        'delimiter': 'comma',
+        'requireLast': true,
+      },
+      'singleline': {
+        'delimiter': 'comma',
+        'requireLast': false,
+      },
+      'overrides': {
+        'interface': {
+          'multiline': {
+            'delimiter': 'semi',
+            'requireLast': true,
+          },
+        },
+      },
+    }],
   },
 };
