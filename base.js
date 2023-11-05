@@ -415,10 +415,6 @@ module.exports = {
      */
     'no-extra-label': 'off',
     /**
-     * 불필요한 세미콜론 사용 금지
-     */
-    'no-extra-semi': 'error',
-    /**
      * switch의 case 안에 break, return 혹은 throw가 꼭 들어가야함.
      */
     'no-fallthrough': 'error',
