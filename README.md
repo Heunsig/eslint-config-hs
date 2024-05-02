@@ -1,4 +1,6 @@
 # Heunsig ESLint
+> ESLint version 9 has been released. However, due to compatibility issues, specific versions of ESLint and related packages have been fixed. Support for ESLint 9 is planned for the future.
+
 - [Heunsig ESLint](#heunsig-eslint)
   - [목표](#목표)
   - [빠른 시작](#빠른-시작)
@@ -54,17 +56,17 @@
 ### Javascript
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @stylistic/eslint-plugin eslint-config-hs
 ```
 
 **PNPM**
 ```bash
-pnpm install --save-dev eslint @babel/core @babel/eslint-parser @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @stylistic/eslint-plugin eslint-config-hs
 ```
 
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 @stylistic/eslint-plugin eslint-config-hs
 ```
 
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
@@ -79,15 +81,15 @@ module.exports = {
 ### Typescript
 **NPM**
 ```bash
-npm install --save-dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev eslint@^8 typescript @typescript-eslint/parser@^6 @typescript-eslint/eslint-plugin@^6 @stylistic/eslint-plugin eslint-config-hs
 ```
 **PNPM**
 ```bash
-pnpm install --save-dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev eslint@^8 typescript @typescript-eslint/parser@^6 @typescript-eslint/eslint-plugin@^6 @stylistic/eslint-plugin eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint typescript @typescript-eslint/parser @typescript-eslint/eslint-plugin @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev eslint typescript @typescript-eslint/parser@^6 @typescript-eslint/eslint-plugin@^6 @stylistic/eslint-plugin eslint-config-hs
 ```
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 ```javascript
@@ -112,15 +114,15 @@ module.exports = {
 ### Vue2
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **PNPM**
 ```bash
-pnpm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 ```javascript
@@ -142,15 +144,15 @@ module.exports = {
 ### Vue3
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **PNPM**
 ```bash
-pnpm install --save-dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser vue-eslint-parser eslint-plugin-vue @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 ```javascript
@@ -174,15 +176,15 @@ module.exports = {
  
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **PNPM**
 ```bash
-pnpm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 
@@ -228,15 +230,15 @@ module.exports = {
 
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **PNPM**
 ```bash
-pnpm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```  
 
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
@@ -273,15 +275,15 @@ module.exports = {
 
 **NPM**
 ```bash
-npm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue eslint-plugin-nuxt vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 eslint-plugin-nuxt@^4 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **PNPM**
 ```bash
-pnpm install --save-dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue eslint-plugin-nuxt vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 eslint-plugin-nuxt@^4 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 **YARN**
 ```bash
-yarn add --dev eslint @babel/core @babel/eslint-parser @typescript-eslint/eslint-plugin @typescript-eslint/parser @vue/eslint-config-typescript eslint eslint-plugin-vue eslint-plugin-nuxt vue-eslint-parser @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 eslint-plugin-nuxt@^4 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
 ```
 
 `.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
