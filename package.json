@@ -2,6 +2,7 @@
   "version": "2.0.0-rc.6",
   "name": "eslint-config-hs",
   "description": "Heunsig ESLint",
+  "type": "module",
   "main": "index.js",
   "author": {
     "name": "Heunsig",
@@ -21,5 +22,9 @@
     "eslint-plugin-vue": "^9.28.0",
     "globals": "^15.10.0",
     "typescript-eslint": "^8.8.0"
+  },
+  "exports": {
+    "import": "./index.js",
+    "require": "./cjs.js"
   }
 }
