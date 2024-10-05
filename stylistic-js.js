@@ -1,11 +1,6 @@
-const pluginJs = require("@eslint/js");
-const stylistic = require("@stylistic/eslint-plugin");
+import stylistic from "@stylistic/eslint-plugin";
 
-module.exports = [
-  {
-    files: ["**/*.{js,mjs,cjs}"],
-  },
-  pluginJs.configs.recommended,
+export default [
   stylistic.configs.customize({
     quotes: "single",
     commaDangle: "always-multiline",

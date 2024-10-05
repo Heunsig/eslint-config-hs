@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-rc.27",
+  "version": "2.0.0-rc.28",
   "name": "eslint-config-hs",
   "description": "Heunsig ESLint",
   "type": "module",
