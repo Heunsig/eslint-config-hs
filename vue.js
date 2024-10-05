@@ -1,6 +1,6 @@
 import pluginJs from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
-import jsStylistic from "./stylistic-js.js";
+import stylisticJs from "./stylistic-js.js";
 import ignoreOption from "./ignoreOption.js";
 
 export default [
@@ -13,7 +13,7 @@ export default [
   {
     files: ["**/*.vue"],
   },
-  ...jsStylistic,
+  ...stylisticJs,
   {
     rules: {
       'vue/multi-word-component-names': 'off',

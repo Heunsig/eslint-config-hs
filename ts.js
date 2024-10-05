@@ -1,6 +1,6 @@
 import pluginJs from "@eslint/js";
 import tseslint from "typescript-eslint";
-import tsStylistic from "./stylistic-ts.js";
+import stylisticTs from "./stylistic-ts.js";
 import ignoreOption from "./ignoreOption.js";
 
 export default [
@@ -10,5 +10,5 @@ export default [
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
-  ...tsStylistic
+  ...stylisticTs
 ]
