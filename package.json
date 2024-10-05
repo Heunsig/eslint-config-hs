@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-rc.18",
+  "version": "2.0.0-rc.19",
   "name": "eslint-config-hs",
   "description": "Heunsig ESLint",
   "type": "module",
@@ -23,6 +23,7 @@
   },
   "exports": {
     "import": "./index.js",
-    "require": "./index.cjs"
+    "require": "./index.cjs",
+    "vue-js": "./vue.js"
   }
 }
