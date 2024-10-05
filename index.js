@@ -1,162 +1,17 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginVue from "eslint-plugin-vue";
-import stylistic from "@stylistic/eslint-plugin";
+import js from './js'
+import ts from "./ts";
+import nodeJs from "./node-js";
+import nodeTs from "./node-ts";
+import vueJs from "./vue-js";
+import vueTs from "./vue-ts";
 
 export default {
   configs: {
-    'js': [
-      {
-        files: ["**/*.{js,mjs,cjs}"],
-      },
-      {
-        languageOptions: {
-          globals: globals.browser,
-        }
-      },
-      pluginJs.configs.recommended,
-      ...pluginVue.configs["flat/recommended"],
-      stylistic.configs.customize({
-        quotes: "double",
-        commaDangle: "only-multiline",
-        semi: true,
-        blockSpacing: true,
-        indent: 2,
-        arrowParens: false,
-        braceStyle: "stroustrup",
-        quoteProps: "consistent-as-needed",
-        jsx: true,
-        flat: true,
-      }),
-    ],
-    'ts': [
-      {
-        files: ["**/*.{js,mjs,cjs,ts}"],
-      },
-      {
-        languageOptions: {
-          globals: globals.browser,
-        }
-      },
-      pluginJs.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...pluginVue.configs["flat/recommended"],
-      stylistic.configs.customize({
-        quotes: "double",
-        commaDangle: "only-multiline",
-        semi: true,
-        blockSpacing: true,
-        indent: 2,
-        arrowParens: false,
-        braceStyle: "stroustrup",
-        quoteProps: "consistent-as-needed",
-        jsx: true,
-        flat: true,
-      }),
-    ],
-    'node-js': [
-      {
-        files: ["**/*.{js,mjs,cjs}"],
-      },
-      {
-        languageOptions: {
-          globals: globals.node,
-        }
-      },
-      pluginJs.configs.recommended,
-      stylistic.configs.customize({
-        quotes: "double",
-        commaDangle: "only-multiline",
-        semi: true,
-        blockSpacing: true,
-        indent: 2,
-        arrowParens: false,
-        braceStyle: "stroustrup",
-        quoteProps: "consistent-as-needed",
-        jsx: true,
-        flat: true,
-      }),
-    ],
-    'node-ts': [
-      {
-        files: ["**/*.{js,mjs,cjs}"],
-      },
-      {
-        languageOptions: {
-          globals: globals.node,
-        }
-      },
-      pluginJs.configs.recommended,
-      ...tseslint.configs.recommended,
-      stylistic.configs.customize({
-        quotes: "double",
-        commaDangle: "only-multiline",
-        semi: true,
-        blockSpacing: true,
-        indent: 2,
-        arrowParens: false,
-        braceStyle: "stroustrup",
-        quoteProps: "consistent-as-needed",
-        jsx: true,
-        flat: true,
-      }),
-    ],
-    'vue-js': [
-      {
-        files: ["**/*.{js,mjs,cjs,vue}"],
-      },
-      {
-        languageOptions: {
-          globals: globals.browser,
-        }
-      },
-      pluginJs.configs.recommended,
-      ...pluginVue.configs["flat/recommended"],
-      {
-        files: ["**/*.vue"],
-      },
-      stylistic.configs.customize({
-        quotes: "double",
-        commaDangle: "only-multiline",
-        semi: true,
-        blockSpacing: true,
-        indent: 2,
-        arrowParens: false,
-        braceStyle: "stroustrup",
-        quoteProps: "consistent-as-needed",
-        jsx: true,
-        flat: true,
-      }),
-    ],
-    'vue-ts': [
-      {
-        files: ["**/*.{js,mjs,cjs,ts,vue}"],
-      },
-      {
-        languageOptions: {
-          globals: globals.browser,
-        }
-      },
-      pluginJs.configs.recommended,
-      ...tseslint.configs.recommended,
-      ...pluginVue.configs["flat/recommended"],
-      {
-        files: ["**/*.vue"],
-        languageOptions: { parserOptions: { parser: tseslint.parser } },
-      },
-      stylistic.configs.customize({
-        quotes: "double",
-        commaDangle: "only-multiline",
-        semi: true,
-        blockSpacing: true,
-        indent: 2,
-        arrowParens: false,
-        braceStyle: "stroustrup",
-        quoteProps: "consistent-as-needed",
-        jsx: true,
-        flat: true,
-      }),
-    ]
+    'js': js,
+    'ts': ts,
+    'node-js': nodeJs,
+    'node-ts': nodeTs,
+    'vue-js': vueJs,
+    'vue-ts': vueTs
   }
 }
