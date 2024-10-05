@@ -1,3 +1,8 @@
+import globals from "globals";
+import pluginJs from "@eslint/js";
+import pluginVue from "eslint-plugin-vue";
+import stylistic from "@stylistic/eslint-plugin";
+
 export default [
   {
     files: ["**/*.{js,mjs,cjs,vue}"],
