@@ -1,4 +1,4 @@
-import stylisticCore from "./stylistic-core";
+import stylisticCore from "./stylistic-core.js";
 
 export default [
   ...stylisticCore,
