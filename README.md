@@ -25,6 +25,8 @@
 
 ## 빠른 시작
 
+이 ESLint 설정은 `package.json`의 `type`이 `module`인 경우를 기준으로 합니다. `module`이 아니라면 [CommonJS 설정](#commonjs-사용-시-설정)을 참고하세요.
+
 ### 공통 설정
 
 `package.json` 에 eslint 룰 체크 및 수정을 위한 script 를 등록 합니다.
@@ -273,3 +275,16 @@ VSCode에서 설정한 `eslint` 룰을 기반으로 파일 저장 시 자동 포
 #### 포맷팅 단축키 설정
 
 파일 저장 시 자동으로 포맷팅을 원하지 않는 사용자는, VSCode의 단축키 설정을 변경하여 포맷팅을 수동으로 실행할 수 있습니다. 먼저 VSCode에서 `F1`을 누르고 `ESLint: Fix all auto-fixable Problems`를 검색 하세요. 그런 다음 `Configure Keybinding` 아이콘을 클릭하여 VSCode 단축키 설정 페이지로 이동합니다. 여기서 `ESLint: Fix all auto-fixable Problems` Command를 더블 클릭하여 원하는 키 설정을 할 수 있습니다.
+
+## CommonJS 사용 시 설정
+
+이 eslint 설정은 `module` 타입의 프로젝트를 기준으로 작성되었습니다. 만약 `module` 타입을 사용할 수 없는 상황이라면 몇 가지 설정을 변경해야 합니다.
+
+1. `eslint.config.js` 파일을 `eslint.config.mjs`로 변경하세요.
+2. `package.json`의 `scripts`에서 `lint` 스크립트를 아래와 같이 수정하세요.
+
+    ```json
+      "scripts": {
+         "lint": "eslint . -c eslint.config.mjs --fix"
+      }
+    ```
