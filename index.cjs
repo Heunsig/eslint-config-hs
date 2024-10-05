@@ -5,17 +5,6 @@ const stylistic = require("@stylistic/eslint-plugin");
 module.exports = {
   configs: {
     javascript: [
-      {
-        files: ["**/*.{js,mjs,cjs}"],
-      },
-      {
-        languageOptions: {
-          globals: {
-            ...globals.browser,
-            ...globals.node
-          }
-        },
-      },
       pluginJs.configs.recommended,
       stylistic.configs.customize({
         quotes: "double",

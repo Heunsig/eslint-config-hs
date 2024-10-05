@@ -7,14 +7,6 @@ import stylistic from "@stylistic/eslint-plugin";
 export default {
   configs: {
     javascript: [
-      {
-        files: ["**/*.{js,mjs,cjs,vue}"],
-      },
-      {
-        languageOptions: {
-          globals: globals.browser,
-        },
-      },
       pluginJs.configs.recommended,
       ...pluginVue.configs["flat/recommended"],
       {
@@ -34,14 +26,6 @@ export default {
       }),
     ],
     typescript: [
-      {
-        files: ["**/*.{js,mjs,cjs,ts,vue}"],
-      },
-      {
-        languageOptions: {
-          globals: globals.browser,
-        },
-      },
       pluginJs.configs.recommended,
       ...tseslint.configs.recommended,
       ...pluginVue.configs["flat/recommended"],
