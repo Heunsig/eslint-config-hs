@@ -1,9 +1,8 @@
 {
-  "version": "2.0.0-rc.28",
+  "version": "2.0.0-rc.29",
   "name": "eslint-config-hs",
   "description": "Heunsig ESLint",
   "type": "module",
-  "main": "index.js",
   "author": {
     "name": "Heunsig",
     "email": "heun3344@gmail.com"
