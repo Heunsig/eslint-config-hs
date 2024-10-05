@@ -3,6 +3,12 @@ const stylistic = require("@stylistic/eslint-plugin");
 
 module.exports = [
   {
+    ignores: [
+      'node_modules/*',
+      'dist/*',
+    ],
+  },
+  {
     files: ["**/*.{js,mjs,cjs}"],
   },
   pluginJs.configs.recommended,
