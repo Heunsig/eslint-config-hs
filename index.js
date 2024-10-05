@@ -1,9 +1,9 @@
-import js from './js'
-import ts from "./ts";
-import nodeJs from "./node-js";
-import nodeTs from "./node-ts";
-import vueJs from "./vue-js";
-import vueTs from "./vue-ts";
+import js from './js.js'
+import ts from "./ts.js";
+import nodeJs from "./node-js.js";
+import nodeTs from "./node-ts.js";
+import vueJs from "./vue-js.js";
+import vueTs from "./vue-ts.js";
 
 export default {
   configs: {
