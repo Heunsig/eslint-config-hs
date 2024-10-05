@@ -12,7 +12,6 @@ export default [
     }
   },
   pluginJs.configs.recommended,
-  ...pluginVue.configs["flat/recommended"],
   stylistic.configs.customize({
     quotes: "double",
     commaDangle: "only-multiline",
