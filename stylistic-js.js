@@ -1,21 +1,5 @@
-import stylistic from "@stylistic/eslint-plugin";
+import stylisticCore from "./stylistic-core";
 
 export default [
-  stylistic.configs.customize({
-    quotes: "single",
-    commaDangle: "always-multiline",
-    semi: true,
-    blockSpacing: true,
-    indent: 2,
-    arrowParens: false,
-    braceStyle: "1tbs",
-    quoteProps: "consistent-as-needed",
-    jsx: true,
-    flat: true,
-  }),
-  {
-    rules: {
-      '@stylistic/brace-style': ['error', '1tbs', { allowSingleLine: true }],
-    }
-  }
+  ...stylisticCore,
 ]

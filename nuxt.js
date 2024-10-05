@@ -1,7 +1,7 @@
 import pluginJs from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
 import tseslint from "typescript-eslint";
-import tsStylistic from "./stylistic-ts.js";
+import stylisticTs from "./stylistic-ts.js";
 import ignoreOption from "./ignoreOption.js";
 
 export default [
@@ -25,7 +25,7 @@ export default [
     files: ["**/*.vue"],
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
-  ...tsStylistic,
+  ...stylisticTs,
   {
     rules: {
       'vue/multi-word-component-names': 'off',
