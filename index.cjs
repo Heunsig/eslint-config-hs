@@ -10,7 +10,8 @@ module.exports = {
       },
       {
         languageOptions: {
-          globals: globals.browser,
+          ...globals.browser,
+          ...globals.node
         },
       },
       pluginJs.configs.recommended,
