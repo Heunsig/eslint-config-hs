@@ -31,7 +31,7 @@
 
 ```json
 "scripts": {
-  "lint": "eslint . -c eslint.config.js --fix --ignore-path .gitignore",
+  "lint": "eslint . -c eslint.config.js --fix"
 }
 ```
 
@@ -213,12 +213,15 @@ yarn add --dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-esl
 
 ```javascript
 import globals from 'globals';
-import config from 'eslint-config-hs/vue-ts';
+import config from 'eslint-config-hs/nuxt';
 
 export default [
   {
     languageOptions: {
-      globals: globals.browser,
+      globals: {
+        ...globals.browser,
+        ...globals.node
+      },
     },
   },
   ...config,
