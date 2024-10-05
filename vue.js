@@ -13,5 +13,14 @@ export default [
   {
     files: ["**/*.vue"],
   },
-  ...jsStylistic
+  ...jsStylistic,
+  {
+    rules: {
+      'vue/multi-word-component-names': 'off',
+      'vue/first-attribute-linebreak': ['error', {
+        singleline: 'ignore',
+        multiline: 'below',
+      }],
+    }
+  }
 ]

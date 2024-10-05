@@ -16,5 +16,14 @@ export default [
     files: ["**/*.vue"],
     languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
-  ...tsStylistic
+  ...tsStylistic,
+  {
+    rules: {
+      'vue/multi-word-component-names': 'off',
+      'vue/first-attribute-linebreak': ['error', {
+        singleline: 'ignore',
+        multiline: 'below',
+      }],
+    }
+  }
 ]
