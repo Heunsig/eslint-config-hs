@@ -6,11 +6,6 @@ export default [
   {
     files: ["**/*.{js,mjs,cjs}"],
   },
-  {
-    languageOptions: {
-      globals: globals.browser,
-    }
-  },
   pluginJs.configs.recommended,
   stylistic.configs.customize({
     quotes: "double",
