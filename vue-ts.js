@@ -1,4 +1,3 @@
-import globals from "globals";
 import pluginJs from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
 import tseslint from "typescript-eslint";
@@ -9,11 +8,6 @@ export default [
   ignoreOption,
   {
     files: ["**/*.{js,mjs,cjs,ts,vue}"],
-  },
-  {
-    languageOptions: {
-      globals: globals.browser,
-    }
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
