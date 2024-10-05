@@ -33,6 +33,9 @@
     },
     "./vue-ts": {
       "import": "./vue-ts.js"
+    },
+    "./nuxt": {
+      "import": "./nuxt.js"
     }
   }
 }
