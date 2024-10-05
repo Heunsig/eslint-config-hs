@@ -25,7 +25,7 @@
 
 ## 빠른 시작
 
-이 ESLint 설정은 `package.json`의 `type`이 `module`인 경우를 기준으로 합니다. `module`이 아니라면 [CommonJS 설정](#commonjs-사용-시-설정)을 참고하세요.
+> 이 ESLint 설정은 `package.json`의 `type`이 `module`인 경우를 기준으로 합니다. `module`이 아니라면 [CommonJS 설정](#commonjs-사용-시-설정)을 참고하세요.
 
 ### 공통 설정
 
