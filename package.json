@@ -1,5 +1,5 @@
 {
-  "version": "2.0.0-rc.21",
+  "version": "2.0.0-rc.22",
   "name": "eslint-config-hs",
   "description": "Heunsig ESLint",
   "type": "module",
@@ -22,7 +22,23 @@
     "typescript-eslint": "^8.8.0"
   },
   "exports": {
-    "import": "./index.js",
-    "require": "./index.cjs"
+    "./vue.js": {
+      "import": "./vue-js.js"
+    },
+    "./vue-ts.js": {
+      "import": "./vue-ts.js"
+    },
+    "./js": {
+      "import": "./js.js"
+    },
+    "./ts": {
+      "import": "./ts.js"
+    },
+    "./node-js": {
+      "import": "./node-js.js"
+    },
+    "./node-ts": {
+      "import": "./node-ts.js"
+    }
   }
 }
