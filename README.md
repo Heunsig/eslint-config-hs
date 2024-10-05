@@ -3,16 +3,16 @@
 - [Heunsig ESLint](#heunsig-eslint)
   - [목표](#목표)
   - [빠른 시작](#빠른-시작)
-    - [공통 적용](#공통-적용)
-  - [환경별 적용](#환경별-적용)
-    - [Javascript](#javascript)
-    - [Typescript](#typescript)
-    - [Vue3](#vue3)
-    - [Vue3 + Typescript](#vue3--typescript)
-    - [Nuxt3](#nuxt3)
-  - [IDE Setting (선택 사항)](#ide-setting-선택-사항)
-    - [VSCode](#vscode)
-      - [Save 시 자동으로 포맷팅 되도록 설정](#save-시-자동으로-포맷팅-되도록-설정)
+    - [공통 설정](#공통-설정)
+    - [환경별 설정](#환경별-설정)
+      - [Javascript](#javascript)
+      - [Typescript](#typescript)
+      - [Vue3](#vue3)
+      - [Vue3 + Typescript](#vue3--typescript)
+      - [Nuxt3](#nuxt3)
+  - [IDE 설정 (선택 사항)](#ide-설정-선택-사항)
+    - [VSCode 설정](#vscode-설정)
+      - [파일 저장 시 자동 포맷팅 설정](#파일-저장-시-자동-포맷팅-설정)
       - [포맷팅 단축키 설정](#포맷팅-단축키-설정)
 
 ## 목표
@@ -25,7 +25,7 @@
 
 ## 빠른 시작
 
-### 공통 적용
+### 공통 설정
 
 `package.json` 에 eslint 룰 체크 및 수정을 위한 script 를 등록 합니다.
 
@@ -35,7 +35,7 @@
 }
 ```
 
-## 환경별 적용
+### 환경별 설정
 
 프로젝트의 환경을 선택하세요.
 
@@ -225,11 +225,11 @@ export default [
 ];
 ```
 
-## IDE Setting (선택 사항)
+## IDE 설정 (선택 사항)
 
-### VSCode
+### VSCode 설정
 
-#### Save 시 자동으로 포맷팅 되도록 설정
+#### 파일 저장 시 자동 포맷팅 설정
 
 VSCode에서 설정한 `eslint` 룰을 기반으로 파일 저장 시 자동 포맷팅을 하기 위해서는 먼저 [eslint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)을 설치해야 합니다. 설치 완료 후 `.js`, `.ts`, `.vue` 파일 저장 시 자동 포맷팅 기능을 활성화 하기 위해선 VSCode 설정이 필요합니다.
 
