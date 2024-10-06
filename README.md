@@ -270,7 +270,7 @@ VSCode에서 설정한 `eslint` 룰을 기반으로 파일 저장 시 자동 포
 }
 ```
 
-`.js`, `.ts`, `.vue`에 한해 기본적으로 `eslint`의 자동 포멧팅 툴을 사용할 것이므로, 해당 파일들의 기본 포맷터를 `dbaeumer.vscode-eslint`로 설정합니다. 그리고 `editor.codeActionsOnSave`의 `source.fixAll.eslint` 설정을 `true`로 설정하여 파일이 저장될 때마다 `eslint`가 자동 포맷팅을 수행하도록 합니다.
+`.js`, `.ts`, `.vue`에 한해 기본적으로 `eslint`의 자동 포멧팅 툴을 사용할 것이므로, 해당 파일들의 기본 포맷터를 `dbaeumer.vscode-eslint`로 설정합니다. 그리고 `editor.codeActionsOnSave`의 `source.fixAll.eslint` 설정을 `explicit`로 설정하여 파일이 저장될 때마다 `eslint`가 자동 포맷팅을 수행하도록 합니다.
 
 #### 포맷팅 단축키 설정
 
