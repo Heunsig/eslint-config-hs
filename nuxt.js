@@ -1,19 +1,31 @@
 import pluginJs from "@eslint/js";
 import pluginVue from "eslint-plugin-vue";
-import stylisticJs from "./stylistic-js.js";
+import tseslint from "typescript-eslint";
+import stylisticTs from "./stylistic-ts.js";
 import ignoreOption from "./ignoreOption.js";
 
 export default [
   ignoreOption,
   {
-    files: ["**/*.{js,mjs,cjs,vue}"],
+    ignores: [
+      '.output/*',
+      '.data/*',
+      '.nuxt/*',
+      '.nitro/*',
+      '.cache/*'
+    ]
+  },
+  {
+    files: ["**/*.{js,mjs,cjs,ts,vue}"],
   },
   pluginJs.configs.recommended,
+  ...tseslint.configs.recommended,
   ...pluginVue.configs["flat/recommended"],
   {
     files: ["**/*.vue"],
+    languageOptions: { parserOptions: { parser: tseslint.parser } },
   },
-  ...stylisticJs,
+  ...stylisticTs,
   {
     rules: {
       'vue/multi-word-component-names': 'off',
@@ -21,6 +33,7 @@ export default [
         singleline: 'ignore',
         multiline: 'below',
       }],
+      'no-undef': 'off'
     }
   }
 ]

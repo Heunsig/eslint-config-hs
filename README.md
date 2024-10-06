@@ -1,326 +1,241 @@
 # Heunsig ESLint
-> ESLint version 9 has been released. However, due to compatibility issues, specific versions of ESLint and related packages have been fixed. Support for ESLint 9 is planned for the future.
 
 - [Heunsig ESLint](#heunsig-eslint)
   - [목표](#목표)
   - [빠른 시작](#빠른-시작)
-    - [공통 적용](#공통-적용)
-  - [주의할 점](#주의할-점)
-  - [적용 방법](#적용-방법)
-    - [Javascript](#javascript)
-    - [Typescript](#typescript)
-    - [Vue2](#vue2)
-    - [Vue3](#vue3)
-    - [Vue3 + Typescript (현재 사용을 권장하지 않습니다.)](#vue3--typescript-현재-사용을-권장하지-않습니다)
-    - [Vue3 + Typescript (No tsconfig.json, 사용 권장)](#vue3--typescript-no-tsconfigjson-사용-권장)
-    - [Nuxt3 + Typescript](#nuxt3--typescript)
-  - [IDE Setting (선택 사항)](#ide-setting-선택-사항)
-    - [VSCode](#vscode)
-      - [Save 시 자동으로 포맷팅 되도록 설정](#save-시-자동으로-포맷팅-되도록-설정)
+    - [공통 설정](#공통-설정)
+    - [환경별 설정](#환경별-설정)
+      - [Javascript](#javascript)
+      - [Typescript](#typescript)
+      - [Vue3](#vue3)
+      - [Vue3 + Typescript](#vue3--typescript)
+      - [Nuxt3](#nuxt3)
+  - [IDE 설정 (선택 사항)](#ide-설정-선택-사항)
+    - [VSCode 설정](#vscode-설정)
+      - [파일 저장 시 자동 포맷팅 설정](#파일-저장-시-자동-포맷팅-설정)
       - [포맷팅 단축키 설정](#포맷팅-단축키-설정)
 
 ## 목표
-* 잘못된 Javascript, Typescript 코드 사용으로 Runtime 오류가 나는 것을 방지
-* 같은 프로젝트를 하는 모든 개발자들이 일관된 코드 스타일로 개발
-* 너무 자유롭지도 너무 엄격하지도 않은 중간 단계의 `ESLint` 룰을 적용
-* `Prettier` 를 사용을 제한하고 `ESLint` 만 사용 (`Prettier`룰과 `ESLint`룰 충돌 발생 때문)
 
-<br/>
-
+- ESLint 룰을 적용하여 코드 품질을 향상
+- 잘못된 Javascript, Typescript 코드 사용으로 Runtime 오류가 나는 것을 방지
+- 같은 프로젝트를 하는 모든 개발자들이 일관된 코드 스타일로 개발
+- 너무 자유롭지도 너무 엄격하지도 않은 중간 단계의 `ESLint` 룰을 적용
+- `Prettier` 를 사용을 제한하고 `ESLint` 만 사용 (`Prettier`룰과 `ESLint`룰 충돌 발생 때문)
 
 ## 빠른 시작
-### 공통 적용
+
+> 이 ESLint 설정은 `package.json`의 `type`이 `module`인 경우를 기준으로 합니다. `module`이 아니라면 [CommonJS 설정](#commonjs-사용-시-설정)을 참고하세요.
+
+### 공통 설정
+
 `package.json` 에 eslint 룰 체크 및 수정을 위한 script 를 등록 합니다.
+
 ```json
 "scripts": {
-  "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore",
+  "lint": "eslint . -c eslint.config.js --fix"
 }
 ```
-프로젝트 스택을 선택하세요.
 
-* [Javascript](#javascript)
-* [Typescript](#typescript)
-* [Vue2](#vue2)
-* [Vue3](#vue3)
-* [Vue3 + Typescript](#vue3--typescript-no-tsconfigjson-사용-권장)
-* [Nuxt3 + Typescript](#nuxt3--typescript)
-<br/>
+### 환경별 설정
 
-## 주의할 점
-* 프로젝트가 [`module` 타입](https://nodejs.org/api/packages.html#type)이라면 ESLint config는 `.eslintrc.cjs`로 사용해야 합니다.
-  * 자신의 프로젝트의 타입을 확인을 하시려면 `package.json` 에서 `type`을 확인하시면 됩니다. 만약 `type`이 없다면 `module` 타입이 아닙니다.
+프로젝트의 환경을 선택하세요.
 
-<br/>
+- [Javascript](#javascript)
+- [Typescript](#typescript)
+- [Vue3](#vue3)
+- [Vue3 + Typescript](#vue3--typescript)
+- [Nuxt3](#nuxt3)
 
-## 적용 방법
 ### Javascript
+
 **NPM**
+
 ```bash
-npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin eslint-config-hs
 ```
 
 **PNPM**
+
 ```bash
-pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin eslint-config-hs
 ```
 
 **YARN**
+
 ```bash
-yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev globals eslint @eslint/js @stylistic/eslint-plugin eslint-config-hs
 ```
 
-`.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
+`eslint.config.js`를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
+
 ```javascript
-module.exports = {
-  extends: [
-    'eslint-config-hs',
-  ],
-};
+import globals from 'globals';
+import config from 'eslint-config-hs/js';
+
+export default [
+  {
+    languageOptions: {
+      globals: globals.browser,
+    },
+  },
+  ...config,
+];
 ```
 
 ### Typescript
+
 **NPM**
+
 ```bash
-npm install --save-dev eslint@^8 typescript @typescript-eslint/parser@^6 @typescript-eslint/eslint-plugin@^6 @stylistic/eslint-plugin eslint-config-hs
-```
-**PNPM**
-```bash
-pnpm install --save-dev eslint@^8 typescript @typescript-eslint/parser@^6 @typescript-eslint/eslint-plugin@^6 @stylistic/eslint-plugin eslint-config-hs
-```
-**YARN**
-```bash
-yarn add --dev eslint typescript @typescript-eslint/parser@^6 @typescript-eslint/eslint-plugin@^6 @stylistic/eslint-plugin eslint-config-hs
-```
-`.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
-```javascript
-module.exports = {
-  extends: [
-    'eslint-config-hs',
-  ],
-  overrides: [
-    {
-      files: ['src/**/*.ts', 'src/**/*.tsx'],
-      extends: [
-        'eslint-config-hs/typescript',
-      ],
-      parserOptions: {
-        project: './tsconfig.json', // tsconfig 파일 등록
-      },
-    },
-  ],
-};
+npm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-config-hs
 ```
 
-### Vue2
-**NPM**
-```bash
-npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
-```
 **PNPM**
+
 ```bash
-pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-config-hs
 ```
+
 **YARN**
+
 ```bash
-yarn add --dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-config-hs
 ```
-`.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
+
+`eslint.config.js`를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
+
 ```javascript
-module.exports = {
-  extends: [
-    'eslint-config-hs',
-  ],
-  overrides: [
-    {
-      files: ['src/**/*.vue'],
-      extends: [
-        'eslint-config-hs/vue2',
-      ],
+import globals from 'globals';
+import config from 'eslint-config-hs/ts';
+
+export default [
+  {
+    languageOptions: {
+      globals: globals.browser,
     },
-  ],
-};
+  },
+  ...config,
+];
 ```
 
 ### Vue3
+
 **NPM**
+
 ```bash
-npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
-```
-**PNPM**
-```bash
-pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
-```
-**YARN**
-```bash
-yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 vue-eslint-parser@^9 eslint-plugin-vue@^9 @stylistic/eslint-plugin eslint-config-hs
-```
-`.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
-```javascript
-module.exports = {
-  extends: [
-    'eslint-config-hs',
-  ],
-  overrides: [
-    {
-      files: ['src/**/*.vue'],
-      extends: [
-        'eslint-config-hs/vue3',
-      ],
-    },
-  ],
-};
+npm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin eslint-plugin-vue eslint-config-hs
 ```
 
-### Vue3 + Typescript (현재 사용을 권장하지 않습니다.)
-> ❌ `tsconfig.json`을 요구하는 Typescript Lint 규칙들이 포함된 버전입니다. 하지만 `tsconfig.json`을 요구하는 규칙들은 Lint 성능 저하에 원인이 되고 있어 현재 해당 버전 사용을 권장하지 않습니다.
- 
-**NPM**
-```bash
-npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
-```
 **PNPM**
-```bash
-pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
-```
-**YARN**
-```bash
-yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
-```
-`.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 
-> ❗ `overrides`값의 순서가 아래와 동일 해야합니다.
+```bash
+pnpm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin eslint-plugin-vue eslint-config-hs
+```
+
+**YARN**
+
+```bash
+yarn add --dev globals eslint @eslint/js @stylistic/eslint-plugin eslint-plugin-vue eslint-config-hs
+```
+
+`eslint.config.js`를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 
 ```javascript
-module.exports = {
-  extends: [
-    'eslint-config-hs',
-  ],
-  overrides: [
-    {
-      files: [
-        'src/**/*.ts',
-        'src/**/*.tsx',
-        'src/**/*.vue',
-      ],
-      extends: [
-        'eslint-config-hs/typescript',
-      ],
-      parserOptions: {
-        project: './tsconfig.json', // tsconfig 파일 등록
-      },
+import globals from 'globals';
+import config from 'eslint-config-hs/vue';
+
+export default [
+  {
+    languageOptions: {
+      globals: globals.browser,
     },
-    {
-      files: ['src/**/*.vue'],
-      extends: [
-        'eslint-config-hs/vue3',
-      ],
-      parserOptions: {
-        parser: '@typescript-eslint/parser',
-      },
-    },
-  ],
-};
+  },
+  ...config,
+];
 ```
 
-### Vue3 + Typescript (No tsconfig.json, 사용 권장)
-> 📢 이 설정은 Typescript Lint 규칙 중 `tsconfig.json` 등록을 필요로 하는 규칙을 제거한 버전입니다.  
-> `tsconfig.json`을 요구하는 규칙들이 Lint 성능 저하의 원인이 되어서 이 버전을 추가했습니다.  
-
-
+### Vue3 + Typescript
 
 **NPM**
+
 ```bash
-npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-plugin-vue eslint-config-hs
 ```
+
 **PNPM**
+
 ```bash
-pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
+pnpm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-plugin-vue eslint-config-hs
 ```
+
 **YARN**
+
 ```bash
-yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
+yarn add --dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-plugin-vue eslint-config-hs
 ```  
 
-`.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
+`eslint.config.js`를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 
 ```javascript
-module.exports = {
-  extends: [
-    'eslint-config-hs',
-  ],
-  overrides: [
-    {
-      files: [
-        'src/**/*.vue',
-        'src/**/*.tsx',
-        'src/**/*.ts',
-      ],
-      extends: [
-        'eslint-config-hs/typescript',
-        'eslint-config-hs/typescript-no-tsconfig',
-        'eslint-config-hs/vue3',
-      ],
-      parserOptions: {
-        parser: {
-          'js': '@babel/eslint-parser',
-          'ts': '@typescript-eslint/parser',
-        },
-      },
+import globals from 'globals';
+import config from 'eslint-config-hs/vue-ts';
+
+export default [
+  {
+    languageOptions: {
+      globals: globals.browser,
     },
-  ],
-};
+  },
+  ...config,
+];
 ```
 
-### Nuxt3 + Typescript
+### Nuxt3
 
 **NPM**
+
 ```bash
-npm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 eslint-plugin-nuxt@^4 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
-```
-**PNPM**
-```bash
-pnpm install --save-dev eslint@^8 @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 eslint-plugin-nuxt@^4 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
-```
-**YARN**
-```bash
-yarn add --dev eslint @babel/core@^7 @babel/eslint-parser@^7 @typescript-eslint/eslint-plugin@^6 @typescript-eslint/parser@^6 @vue/eslint-config-typescript@^12 eslint-plugin-vue@^9 eslint-plugin-nuxt@^4 vue-eslint-parser@^9 @stylistic/eslint-plugin eslint-config-hs
+npm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-plugin-vue eslint-config-hs
 ```
 
-`.eslintrc.js` 혹은 [`.eslintrc.cjs`](#주의할-점)를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
+**PNPM**
+
+```bash
+pnpm install --save-dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-plugin-vue eslint-config-hs
+```
+
+**YARN**
+
+```bash
+yarn add --dev globals eslint @eslint/js @stylistic/eslint-plugin typescript-eslint eslint-plugin-vue eslint-config-hs
+```
+
+`eslint.config.js`를 root 디렉토리에 생성 후 아래 내용을 입력하세요.
 
 ```javascript
-module.exports = {
-  extends: [
-    'eslint-config-hs',
-  ],
-  overrides: [
-    {
-      files: [
-        './**/*.vue',
-        './**/*.tsx',
-        './**/*.ts',
-      ],
-      extends: [
-        'eslint-config-hs/typescript',
-        'eslint-config-hs/typescript-no-tsconfig',
-        'eslint-config-hs/nuxt3',
-      ],
-      parserOptions: {
-        parser: {
-          'js': '@babel/eslint-parser',
-          'ts': '@typescript-eslint/parser',
-        },
+import globals from 'globals';
+import config from 'eslint-config-hs/nuxt';
+
+export default [
+  {
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node
       },
     },
-  ],
-};
+  },
+  ...config,
+];
 ```
 
-<br/>
+## IDE 설정 (선택 사항)
 
-## IDE Setting (선택 사항)
-### VSCode
-#### Save 시 자동으로 포맷팅 되도록 설정
+### VSCode 설정
+
+#### 파일 저장 시 자동 포맷팅 설정
+
 VSCode에서 설정한 `eslint` 룰을 기반으로 파일 저장 시 자동 포맷팅을 하기 위해서는 먼저 [eslint extension](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)을 설치해야 합니다. 설치 완료 후 `.js`, `.ts`, `.vue` 파일 저장 시 자동 포맷팅 기능을 활성화 하기 위해선 VSCode 설정이 필요합니다.
 
 **VSCode 전체 설정**  
@@ -334,28 +249,42 @@ VSCode에서 설정한 `eslint` 룰을 기반으로 파일 저장 시 자동 포
   "[vue]": {
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+      "source.fixAll.eslint": "explicit"
     },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[javascript]": {
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+      "source.fixAll.eslint": "explicit"
     },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   },
   "[typescript]": {
     "editor.formatOnSave": false,
     "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
+      "source.fixAll.eslint": "explicit"
     },
     "editor.defaultFormatter": "dbaeumer.vscode-eslint"
   }
 }
 ```
 
-`.js`, `.ts`, `.vue`에 한해 기본적으로 `eslint`의 자동 포멧팅 툴을 사용할 것이므로, 해당 파일들의 기본 포맷터를 `dbaeumer.vscode-eslint`로 설정합니다. 그리고 `editor.codeActionsOnSave`의 `source.fixAll.eslint` 설정을 `true`로 설정하여 파일이 저장될 때마다 `eslint`가 자동 포맷팅을 수행하도록 합니다.
+`.js`, `.ts`, `.vue`에 한해 기본적으로 `eslint`의 자동 포멧팅 툴을 사용할 것이므로, 해당 파일들의 기본 포맷터를 `dbaeumer.vscode-eslint`로 설정합니다. 그리고 `editor.codeActionsOnSave`의 `source.fixAll.eslint` 설정을 `explicit`로 설정하여 파일이 저장될 때마다 `eslint`가 자동 포맷팅을 수행하도록 합니다.
 
 #### 포맷팅 단축키 설정
+
 파일 저장 시 자동으로 포맷팅을 원하지 않는 사용자는, VSCode의 단축키 설정을 변경하여 포맷팅을 수동으로 실행할 수 있습니다. 먼저 VSCode에서 `F1`을 누르고 `ESLint: Fix all auto-fixable Problems`를 검색 하세요. 그런 다음 `Configure Keybinding` 아이콘을 클릭하여 VSCode 단축키 설정 페이지로 이동합니다. 여기서 `ESLint: Fix all auto-fixable Problems` Command를 더블 클릭하여 원하는 키 설정을 할 수 있습니다.
+
+## CommonJS 사용 시 설정
+
+이 eslint 설정은 `module` 타입의 프로젝트를 기준으로 작성되었습니다. 만약 `module` 타입을 사용할 수 없는 상황이라면 몇 가지 설정을 변경해야 합니다.
+
+1. `eslint.config.js` 파일을 `eslint.config.mjs`로 변경하세요.
+2. `package.json`의 `scripts`에서 `lint` 스크립트를 아래와 같이 수정하세요.
+
+    ```json
+      "scripts": {
+         "lint": "eslint . -c eslint.config.mjs --fix"
+      }
+    ```
